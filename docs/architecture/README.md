@@ -32,7 +32,7 @@ Authorised Sources
 
 ## Implementation Status
 
-**Current phase: Phase 3 — Curated CoJ dataset (complete, pending commit).**
+**Current phase: Phase 4 — Deterministic municipal intelligence search (implemented, pending commit).**
 
 | Item | Status |
 |------|--------|
@@ -44,9 +44,10 @@ Authorised Sources
 | Domain model (Organisation, Article, Source, Repository, Verification) | IMPLEMENTED (Phase 2/3) |
 | Repository contracts + JSON drivers | IMPLEMENTED (Phase 2) |
 | Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2/3) |
-| PHPUnit regression suite | IMPLEMENTED (Phase 2/3, 47 tests) |
+| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4, 86 tests) |
 | CoJ dataset | IMPLEMENTED (Phase 3) |
-| Search + deterministic ranking | PLANNED (Phase 4) |
+| Search + deterministic ranking | IMPLEMENTED (Phase 4) |
+| Intelligence search API + UI | IMPLEMENTED (Phase 4) |
 | Exactly-three selection + explanations | PLANNED (Phase 5) |
 | Content discovery | PLANNED (Phase 6) |
 | Verification + provenance | PLANNED (Phase 7) |
@@ -140,7 +141,7 @@ each phase is validated and reported before the next begins.
 | 1 | Architecture + Scaffold (complete) |
 | 2 | Domain model + repository contracts + JSON drivers (complete) |
 | 3 | CoJ dataset (complete) |
-| 4 | Search + deterministic ranking |
+| 4 | Search + deterministic ranking (implemented) |
 | 5 | Exactly-three selection + explainability |
 | 6 | Content discovery architecture |
 | 7 | Verification + provenance |
@@ -173,11 +174,12 @@ coj-intelligent-content-platform/
 │   │   │   ├── Article/       Article, ArticleStatus
 │   │   │   ├── Source/        SourceTrust, SourceTier
 │   │   │   ├── Shared/        VerificationStatus (verified/pending/unverified)
+│   │   │   ├── Intelligence/  SearchMatch, SearchResult, SearchResponse
 │   │   │   └── Repository/    RepositoryHealth, RepositoryPolicy
-│   │   ├── Application/    use-case services (seeding, health, paths)
-│   │   ├── Contracts/      repository ports (Organisation/Article/Source/Health)
+│   │   ├── Application/    use-case services (seeding, health, paths, intelligence)
+│   │   ├── Contracts/      repository ports + intelligence contract
 │   │   ├── Infrastructure/ JSON persistence drivers (gateway + 3 repositories)
-│   │   └── Http/           API controllers
+│   │   └── Http/           API controllers + form requests
 │   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation
 │   ├── database/seed-data/ curated CoJ dataset (entities/sources/articles)

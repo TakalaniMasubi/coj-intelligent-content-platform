@@ -77,7 +77,7 @@ coj-intelligent-content-platform/
 | 1 | Architecture + Scaffold (complete) |
 | 2 | Domain model + repository contracts + JSON drivers (complete) |
 | 3 | CoJ dataset (complete) |
-| 4 | Search + deterministic ranking |
+| 4 | Search + deterministic ranking (implemented) |
 | 5 | Exactly-three selection + explainability |
 | 6 | Content discovery architecture |
 | 7 | Verification + provenance |
@@ -133,6 +133,26 @@ php artisan cojmip:repository-health
 The repository volume defaults to `backend/storage/app/data`; point
 `COJMIP_REPOSITORY_VOLUME` elsewhere to use a different data directory.
 
+### Municipal intelligence search
+
+A deterministic, explainable natural-language search runs over the curated
+repository (no AI, no API keys):
+
+```bash
+cd backend
+php artisan serve     # then open http://localhost:8000/intelligence
+```
+
+- **UI:** `/intelligence` — professional search screen with verification
+  badges, relevance scores and "why this matched" explanations.
+- **API:** `POST /api/v1/intelligence/search` with
+  `{"query": "Which organisations are involved in waste management?"}`.
+- Scoring is presence-based (configurable weights in `config/cojmip.php`
+  under `ranking_weights`) and verification-aware: verified, pending and
+  unverified records stay visibly distinct and are never conflated.
+- Same repository + same query always yields the same ranking (ties broken by
+  organisation name, then id).
+
 ## Testing
 
 ```bash
@@ -142,14 +162,13 @@ php artisan test
 
 ## Current Phase
 
-**Phase 3 — Curated CoJ dataset.** The platform domain model now also
-includes `VerificationStatus` (verified / pending / unverified) with
-verification metadata on organisations and source-trust records.
-`database/seed-data/` holds the curated City of Johannesburg dataset:
-13 municipal entities, 17 directorates, the Office of the City Manager,
-14 official source records and 16 foundation articles. Entities and sources
-verified against official domains are marked verified with `last_verified_at`;
-directorates and not-yet-re-verified entities are marked pending. Repository
-health (`cojmip:repository-health`) reports organisations by type and by
-verification status. The PHPUnit suite has grown to 47 tests. See
-`docs/architecture/README.md` for the full implementation status register.
+**Phase 4 — Deterministic municipal intelligence search.** The curated
+Phase 3 repository now has an explainable search engine: a normalisation +
+term-extraction pipeline (stop-word aware, punctuation/whitespace/duplicate
+resistant), verification-aware presence scoring with configurable weights,
+deterministic tie-breaking and per-result explanations. It is exposed as
+`POST /api/v1/intelligence/search` and a professional Blade + self-contained
+CSS screen at `/intelligence`. Verification status (verified / pending /
+unverified) is always surfaced separately from the score. The PHPUnit suite
+now has 86 tests. See `docs/architecture/README.md` for the full
+implementation status register.

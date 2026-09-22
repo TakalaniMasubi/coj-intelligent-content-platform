@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Application\Health\RepositoryHealthService;
+use App\Application\Intelligence\IntelligenceSearchService;
 use App\Application\Repository\RepositoryPaths;
+use App\Contracts\Intelligence\IntelligenceSearchContract;
 use App\Contracts\Repositories\ArticleRepositoryContract;
 use App\Contracts\Repositories\OrganisationRepositoryContract;
 use App\Contracts\Repositories\RepositoryHealthContract;
@@ -49,5 +51,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ArticleRepositoryContract::class, JsonArticleRepository::class);
         $this->app->bind(SourceTrustRepositoryContract::class, JsonSourceTrustRepository::class);
         $this->app->bind(RepositoryHealthContract::class, RepositoryHealthService::class);
+        $this->app->bind(IntelligenceSearchContract::class, IntelligenceSearchService::class);
+        $this->app->bind(\App\Application\Intelligence\RelevanceScorer::class, fn () => new \App\Application\Intelligence\RelevanceScorer(
+            config('cojmip.ranking_weights.fields', []),
+            config('cojmip.ranking_weights.verification', []),
+            (int) config('cojmip.ranking_weights.cap', 100),
+        ));
     }
 }

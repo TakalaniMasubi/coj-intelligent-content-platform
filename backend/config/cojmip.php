@@ -79,11 +79,38 @@ return [
     | Ranking Weights
     |--------------------------------------------------------------------------
     |
-    | PLANNED (Phase 4): deterministic relevance-scoring weights.
-    | Deliberately empty in Phase 1 to avoid inventing tuning values.
+    | Deterministic relevance-scoring weights for the intelligence search
+    | engine (Phase 4). Presence-based: a repository field contributes its
+    | weight ONCE per organisation when any query term occurs in it. The base
+    | score is then scaled by the documented verification factor and capped at
+    | `cap`.
+    |
+    |   name / abbreviation / alias   identifier matches (strongest)
+    |   description                   stored organisation description
+    |   type                          entity / directorate / office
+    |   article_title / article_summary  stored article content
+    |
+    | Verification factors lower the score of records that are not yet
+    | verified; the status itself is always surfaced separately in results.
     |
     */
-    'ranking_weights' => [],
+    'ranking_weights' => [
+        'fields' => [
+            'name' => 30,
+            'abbreviation' => 22,
+            'alias' => 18,
+            'type' => 6,
+            'description' => 22,
+            'article_title' => 16,
+            'article_summary' => 12,
+        ],
+        'verification' => [
+            'verified' => 1.0,
+            'pending' => 0.85,
+            'unverified' => 0.7,
+        ],
+        'cap' => 100,
+    ],
 
     /*
     |--------------------------------------------------------------------------
