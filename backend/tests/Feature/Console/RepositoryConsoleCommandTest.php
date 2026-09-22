@@ -25,7 +25,13 @@ class RepositoryConsoleCommandTest extends TestCase
         $this->assertFileExists($volume.'/sources.json');
 
         $repository = new JsonOrganisationRepository(new RepositoryJsonGateway($volume));
-        $this->assertSame(3, $repository->count());
+        $this->assertSame(31, $repository->count());
+
+        $this->assertFileExists($volume.'/organisations.json');
+        $this->assertFileExists($volume.'/articles.json');
+        $this->assertFileExists($volume.'/sources.json');
+        $this->assertSame(16, (new \App\Infrastructure\Persistence\Json\JsonArticleRepository(new RepositoryJsonGateway($volume)))->count());
+        $this->assertSame(14, (new \App\Infrastructure\Persistence\Json\JsonSourceTrustRepository(new RepositoryJsonGateway($volume)))->count());
 
         $this->deleteDirectory($volume);
     }

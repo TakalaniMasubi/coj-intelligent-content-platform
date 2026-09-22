@@ -44,6 +44,11 @@ class CoJOrganisationTest extends TestCase
         $this->assertSame(OrganisationStatus::Active, $organisation->officialStatus);
         $this->assertNull($organisation->head);
         $this->assertSame([], $organisation->aliases);
+        $this->assertSame(\App\Domain\Shared\VerificationStatus::Pending, $organisation->verificationStatus);
+        $this->assertNull($organisation->abbreviation);
+        $this->assertNull($organisation->description);
+        $this->assertNull($organisation->sourceReference);
+        $this->assertNull($organisation->lastVerifiedAt);
     }
 
     public function test_from_array_requires_id_and_name(): void
@@ -83,16 +88,34 @@ class CoJOrganisationTest extends TestCase
             'aliases' => ['RT'],
             'head' => ['name' => 'B. Person', 'title' => 'CEO'],
             'jurisdiction' => 'City of Johannesburg',
-            'official_website' => 'https://example.org',
+            'official_url' => 'https://example.org',
             'mandate' => 'Mandate text',
             'source_links' => ['https://example.org/mandate'],
             'tier' => 'tier2',
             'official_status' => 'active',
             'last_updated' => '2026-09-01T00:00:00+00:00',
+            'abbreviation' => 'RT',
+            'description' => 'Round trip description.',
+            'source_reference' => 'https://example.org',
+            'verification_status' => 'verified',
+            'last_verified_at' => '2026-09-22T00:00:00+00:00',
         ];
 
         $roundTripped = CoJOrganisation::fromArray(CoJOrganisation::fromArray($source)->toArray())->toArray();
 
         $this->assertSame($source, $roundTripped);
+    }
+
+    public function test_from_array_accepts_legacy_official_website_key(): void
+    {
+        $organisation = CoJOrganisation::fromArray([
+            'id' => 'coj-org-0006',
+            'name' => 'Legacy Key Entity',
+            'organisation_type' => 'entity',
+            'official_website' => 'https://legacy.example',
+        ]);
+
+        $this->assertSame('https://legacy.example', $organisation->officialWebsite);
+        $this->assertSame('https://legacy.example', $organisation->toArray()['official_url']);
     }
 }

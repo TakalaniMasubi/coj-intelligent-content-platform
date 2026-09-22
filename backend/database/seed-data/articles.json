@@ -1,55 +1,275 @@
 {
     "articles": [
         {
-            "id": "coj-art-0001",
-            "source_name": "coj.example.gov.za",
-            "source_url": "https://coj.example.gov.za/news/one",
-            "title": "Synthetic Article One",
-            "summary": "Synthetic summary one.",
-            "subject": "example",
+            "id": "coj-art-joshco",
+            "source_name": "joshco.co.za",
+            "source_url": "https://www.joshco.co.za",
+            "title": "JOSHCO: social and affordable housing in Johannesburg",
+            "summary": "The Johannesburg Social Housing Company develops and manages social and affordable rental housing, helping people live close to work in the city.",
+            "subject": "housing",
             "organisation_ids": [
-                "coj-org-0001"
+                "joshco"
             ],
             "tier": "tier1",
             "status": "verified",
-            "published_at": "2026-09-20T00:00:00+00:00",
-            "retrieved_at": "2026-09-21T00:00:00+00:00",
-            "content_hash": "synthetic-content-hash-0001",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "32de8c9f08e00f2561d1f94585de8e28b2026a580e40df24459aa0db98984119",
             "archived_at": null
         },
         {
-            "id": "coj-art-0002",
-            "source_name": "joburg-municipal-news.example",
-            "source_url": "https://joburg-municipal-news.example/item/two",
-            "title": "Synthetic Article Two",
-            "summary": "Synthetic summary two.",
-            "subject": "example",
+            "id": "coj-art-jpc",
+            "source_name": "jhbproperty.co.za",
+            "source_url": "https://www.jhbproperty.co.za",
+            "title": "The Joburg Property Company: managing the city property estate",
+            "summary": "The Joburg Property Company manages the City of Johannesburg municipal property portfolio, including property development, leasing and facilities management.",
+            "subject": "property",
             "organisation_ids": [
-                "coj-org-0001",
-                "coj-org-0002"
+                "jpc"
             ],
-            "tier": "tier2",
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "901a89045faf9e0182f588a8841624864ed4cb8a28ef61b5aa0a11ced2999a42",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-joburg-market",
+            "source_name": "joburgmarket.co.za",
+            "source_url": "https://www.joburgmarket.co.za",
+            "title": "Joburg Market: largest fresh produce market in Africa",
+            "summary": "The Joburg Market at City Deep trades fresh fruit and vegetables and serves as the largest fresh produce market in Africa.",
+            "subject": "food security",
+            "organisation_ids": [
+                "joburg-market"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "e64752bfee68573375af619470b570947892cde46df287e96a011ad4e8efcccf",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-city-parks",
+            "source_name": "jhbcityparksandzoo.com",
+            "source_url": "https://www.jhbcityparksandzoo.com",
+            "title": "Johannesburg City Parks and Zoo: public open space management",
+            "summary": "Johannesburg City Parks and Zoo manages the city parks, cemeteries, public open spaces, street trees, botanical gardens and the Johannesburg Zoo.",
+            "subject": "parks and recreation",
+            "organisation_ids": [
+                "city-parks-and-zoo"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "bc90d53c054b884b774ddab03d823e9948a6051f56e72080b30933416533d580",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-jda",
+            "source_name": "jda.org.za",
+            "source_url": "https://www.jda.org.za",
+            "title": "The Johannesburg Development Agency: urban infrastructure delivery",
+            "summary": "The Johannesburg Development Agency plans and implements area-based infrastructure and urban development projects on behalf of the City of Johannesburg.",
+            "subject": "urban development",
+            "organisation_ids": [
+                "jda"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "26de9971593646dcd16d746e14162bac25c407468315655d9fdfb1f61c17fb8d",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-mtc",
+            "source_name": "mtc.joburg.org.za",
+            "source_url": "https://mtc.joburg.org.za",
+            "title": "MTC: the City broadband and technology company",
+            "summary": "The Metropolitan Trading Company supplies wholesale data, dark fibre, lit fibre and connectivity services as the City of Johannesburg broadband and technology company.",
+            "subject": "connectivity",
+            "organisation_ids": [
+                "mtc"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "6c88d341ce53a83c77b2555d348848d518ed50a32f05211fa3daad837e024fcf",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-joburg-tourism",
+            "source_name": "visit.joburg",
+            "source_url": "https://visit.joburg",
+            "title": "Joburg Tourism: destination marketing for the City",
+            "summary": "The Joburg Tourism Company is the destination management organisation selling the City of Johannesburg to leisure, business and events visitors.",
+            "subject": "tourism",
+            "organisation_ids": [
+                "joburg-tourism"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "12621b1194e42b9967f924de4d5bb38acc65c5c897346ed5c9cfe205e7e4a525",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-theatres",
+            "source_name": "joburgcitytheatres.com",
+            "source_url": "https://joburgcitytheatres.com",
+            "title": "Joburg City Theatres: the city major theatre venues",
+            "summary": "Joburg City Theatres operates the Joburg Theatre, Soweto Theatre and Roodepoort Theatre, the City of Johannesburg major performance venues.",
+            "subject": "arts and culture",
+            "organisation_ids": [
+                "joburg-city-theatres"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "8a436ae4cc874893a84f2494ccb9f93e2449bded9da2899e9b935929620cd531",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-metrobus",
+            "source_name": "mbus.joburg.org.za",
+            "source_url": "https://mbus.joburg.org.za",
+            "title": "Metrobus: municipal bus services in Johannesburg",
+            "summary": "Metrobus operates scheduled municipal bus services across the City of Johannesburg as part of the city public transport network.",
+            "subject": "public transport",
+            "organisation_ids": [
+                "metrobus"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "00506e12c86880b271f2e7c0c1d1e6ffefe5ecd25b142b06c2cb0844f84084ce",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-pikitup",
+            "source_name": "pikitup.co.za",
+            "source_url": "https://www.pikitup.co.za",
+            "title": "Pikitup: waste management for the City",
+            "summary": "Pikitup is the City of Johannesburg waste management utility, responsible for refuse collection, recycling and disposal services.",
+            "subject": "waste management",
+            "organisation_ids": [
+                "pikitup"
+            ],
+            "tier": "tier1",
             "status": "unverified",
-            "published_at": "2026-08-01T00:00:00+00:00",
-            "retrieved_at": "2026-09-21T00:00:00+00:00",
-            "content_hash": "synthetic-content-hash-0002",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "b7039d7ec8e16b67e18e73e2894645cba85b0c1b1ff5010da37f0b9fd0d3ab79",
             "archived_at": null
         },
         {
-            "id": "coj-art-0003",
-            "source_name": "citizen-blog.example",
-            "source_url": "https://citizen-blog.example/old-post",
-            "title": "Synthetic Old Article",
-            "summary": "Synthetic old summary.",
-            "subject": "example",
+            "id": "coj-art-city-power",
+            "source_name": "citypower.co.za",
+            "source_url": "https://www.citypower.co.za",
+            "title": "City Power: electricity supply and distribution",
+            "summary": "City Power supplies and distributes electricity in the City of Johannesburg, including connections, metering and outage management.",
+            "subject": "electricity",
             "organisation_ids": [
-                "coj-org-0003"
+                "city-power"
             ],
-            "tier": "tier3",
-            "status": "rejected",
-            "published_at": "2020-01-01T00:00:00+00:00",
-            "retrieved_at": "2020-01-02T00:00:00+00:00",
-            "content_hash": "synthetic-content-hash-0003",
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "1f5a43f4060df786208934a4d0e94c89f6613b4e5b91873607ad4be98e2d0a61",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-joburg-water",
+            "source_name": "johannesburgwater.co.za",
+            "source_url": "https://www.johannesburgwater.co.za",
+            "title": "Johannesburg Water: water supply and sanitation",
+            "summary": "Johannesburg Water supplies potable water and manages sanitation services across the City of Johannesburg.",
+            "subject": "water and sanitation",
+            "organisation_ids": [
+                "joburg-water"
+            ],
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "ce25bdb69c51e3a8b387f6f3a250b241f2922835c5a8e5170da5a76cb0eb553b",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-jra",
+            "source_name": "jra.org.za",
+            "source_url": "https://www.jra.org.za",
+            "title": "The Johannesburg Roads Agency: roads and stormwater",
+            "summary": "The Johannesburg Roads Agency plans, builds and maintains the City of Johannesburg road network and stormwater infrastructure.",
+            "subject": "roads and infrastructure",
+            "organisation_ids": [
+                "jra"
+            ],
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "dba5d18746fd270d4d2aaa1235e1c1c50485a175d5648b2401921a58f55a5e9c",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-human-settlements",
+            "source_name": "joburg.org.za",
+            "source_url": "https://www.joburg.org.za",
+            "title": "Human settlements: housing delivery in Johannesburg",
+            "summary": "The human settlements directorate of the City of Johannesburg drives housing delivery, title deeds and informal settlement upgrades.",
+            "subject": "housing",
+            "organisation_ids": [
+                "human-settlements"
+            ],
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "f5c351bb74f093f92b821ef08501e1c10f562221a5b6a0e18dce39e8b773d4e1",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-public-safety",
+            "source_name": "joburg.org.za",
+            "source_url": "https://www.joburg.org.za",
+            "title": "Public safety services in the City of Johannesburg",
+            "summary": "Public safety in the City of Johannesburg covers by-law enforcement, law enforcement support and emergency management.",
+            "subject": "public safety",
+            "organisation_ids": [
+                "public-safety"
+            ],
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "24d00308bae6c738575d165f1da0d6c5e92d298ebf775cbea53ae99b6a827bd7",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-economic-development",
+            "source_name": "joburg.org.za",
+            "source_url": "https://www.joburg.org.za",
+            "title": "Economic development in the City of Johannesburg",
+            "summary": "The economic development directorate promotes job creation, business support and investment in the City of Johannesburg.",
+            "subject": "economic development",
+            "organisation_ids": [
+                "economic-development"
+            ],
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-22T00:00:00+00:00",
+            "content_hash": "cf7e9313dddc383f89dbc30bdd349b003850cc3e81a95d2d4006e79d94ff5178",
             "archived_at": null
         }
     ]

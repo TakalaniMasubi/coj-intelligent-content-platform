@@ -33,6 +33,9 @@ class RepositoryHealthServiceTest extends TestCase
         $this->assertSame(0, $report->expiredCount);
         $this->assertSame([], $report->issues);
         $this->assertSame(['verified' => 1, 'unverified' => 1, 'rejected' => 1], $report->byStatus);
+        $this->assertSame(['entity' => 1, 'directorate' => 1, 'office' => 1], $report->organisationsByType);
+        $this->assertSame(['pending' => 3], $report->organisationsByVerification);
+        $this->assertSame(['pending' => 3], $report->sourcesByVerification);
     }
 
     public function test_it_reports_healthy_for_a_fresh_verified_volume(): void
@@ -68,6 +71,9 @@ class RepositoryHealthServiceTest extends TestCase
         $this->assertSame(RepositoryHealth::STATUS_HEALTHY, $report->status);
         $this->assertTrue($report->isHealthy());
         $this->assertSame(1, $report->freshCount);
+        $this->assertSame(['entity' => 1], $report->organisationsByType);
+        $this->assertSame(['pending' => 1], $report->organisationsByVerification);
+        $this->assertSame(['pending' => 1], $report->sourcesByVerification);
 
         $this->deleteDirectory($volume);
     }

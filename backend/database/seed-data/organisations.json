@@ -1,54 +1,630 @@
 {
     "organisations": [
         {
-            "id": "coj-org-0001",
-            "name": "Example Utility Entity",
+            "id": "city-parks-and-zoo",
+            "name": "Johannesburg City Parks and Zoo",
             "organisation_type": "entity",
+            "abbreviation": "JCPZ",
             "aliases": [
-                "Example Utility"
+                "Johannesburg City Parks"
             ],
-            "head": {
-                "name": "A. Person",
-                "title": "Managing Director",
-                "role_summary": "Synthetic placeholder head of organisation."
-            },
+            "head": null,
             "jurisdiction": "City of Johannesburg",
-            "official_website": "https://www.example-utility.co.za",
-            "mandate": "Synthetic placeholder mandate.",
+            "official_url": "https://www.jhbcityparksandzoo.com",
+            "description": "Johannesburg City Parks and Zoo manages the city parks, cemeteries, public open spaces, street trees, botanical gardens and the Johannesburg Zoo.",
+            "source_reference": "https://www.jhbcityparksandzoo.com",
             "source_links": [
-                "https://www.example-utility.co.za/about"
+                "https://www.jhbcityparksandzoo.com"
             ],
             "tier": "tier1",
             "official_status": "active",
-            "last_updated": "2026-09-01T00:00:00+00:00"
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
         },
         {
-            "id": "coj-org-0002",
-            "name": "Example Directorate",
-            "organisation_type": "directorate",
+            "id": "city-power",
+            "name": "City Power",
+            "organisation_type": "entity",
+            "abbreviation": null,
             "aliases": [],
             "head": null,
             "jurisdiction": "City of Johannesburg",
-            "official_website": null,
-            "mandate": null,
-            "source_links": [],
+            "official_url": "https://www.citypower.co.za",
+            "description": "City Power distributes and supplies electricity to the City of Johannesburg, including connections, metering, prepaid electricity and outage management.",
+            "source_reference": "https://www.citypower.co.za",
+            "source_links": [
+                "https://www.citypower.co.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "community-development",
+            "name": "Community Development",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Community development and social services supporting residents and community organisations in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
             "tier": "tier2",
             "official_status": "active",
-            "last_updated": "2026-09-01T00:00:00+00:00"
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
         },
         {
-            "id": "coj-org-0003",
-            "name": "Example Regional Office",
-            "organisation_type": "office",
+            "id": "corporate-shared-services",
+            "name": "Corporate and Shared Services",
+            "organisation_type": "directorate",
+            "abbreviation": null,
             "aliases": [],
             "head": null,
             "jurisdiction": "City of Johannesburg",
-            "official_website": null,
-            "mandate": null,
-            "source_links": [],
-            "tier": "tier3",
-            "official_status": "dormant",
-            "last_updated": "2026-09-01T00:00:00+00:00"
+            "official_url": "https://www.joburg.org.za",
+            "description": "Shared corporate services for the municipality, including human resources, ICT systems and facilities management.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "development-planning",
+            "name": "Development Planning",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Land use management, spatial planning, town planning and building control services in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "economic-development",
+            "name": "Economic Development",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Economic development, job creation, business support and investment promotion for the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "environment-infrastructure",
+            "name": "Environment and Infrastructure Services",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Environmental management and municipal infrastructure planning and delivery in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "finance",
+            "name": "Finance",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Municipal budgeting, revenue collection, accounting and financial management for the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "group-forensics",
+            "name": "Group Forensics",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Forensic and anti-corruption investigations protecting the City of Johannesburg from fraud and corruption.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "group-governance",
+            "name": "Group Governance",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Municipal governance support covering council processes, accountability and oversight within the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "group-legal-contracts",
+            "name": "Group Legal and Contracts",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Municipal legal services, contract management and litigation support for the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "group-strategy-policy-coordination-and-relations",
+            "name": "Group Strategy, Policy Coordination and Relations",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Strategic planning, policy coordination, research, and intergovernmental and international relations for the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "health",
+            "name": "Health",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Municipal health services including environmental health inspections and public health protection in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "human-settlements",
+            "name": "Human Settlements",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Housing delivery, title deed programmes and informal settlement upgrades in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "jda",
+            "name": "Johannesburg Development Agency",
+            "organisation_type": "entity",
+            "abbreviation": "JDA",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.jda.org.za",
+            "description": "The Johannesburg Development Agency is the city infrastructure and urban development agency, planning and implementing area-based public projects.",
+            "source_reference": "https://www.jda.org.za",
+            "source_links": [
+                "https://www.jda.org.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "joburg-city-theatres",
+            "name": "Joburg City Theatres",
+            "organisation_type": "entity",
+            "abbreviation": "JCT",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://joburgcitytheatres.com",
+            "description": "Joburg City Theatres is the municipal theatre grouping, operating the Joburg Theatre, Soweto Theatre and Roodepoort Theatre.",
+            "source_reference": "https://joburgcitytheatres.com",
+            "source_links": [
+                "https://joburgcitytheatres.com"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "joburg-connect",
+            "name": "Joburg Connect",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Customer care, service requests, complaints handling and digital services for residents of the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "joburg-market",
+            "name": "Joburg Market",
+            "organisation_type": "entity",
+            "abbreviation": "JBM",
+            "aliases": [
+                "Johannesburg Market"
+            ],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburgmarket.co.za",
+            "description": "The Joburg Market at City Deep is the largest fresh produce market in Africa, trading fruit and vegetables for the region.",
+            "source_reference": "https://www.joburgmarket.co.za",
+            "source_links": [
+                "https://www.joburgmarket.co.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "joburg-tourism",
+            "name": "Joburg Tourism Company",
+            "organisation_type": "entity",
+            "abbreviation": "JTC",
+            "aliases": [
+                "Joburg Tourism"
+            ],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://visit.joburg",
+            "description": "The Joburg Tourism Company is the City of Johannesburg destination management organisation for destination marketing, visitor information and events.",
+            "source_reference": "https://visit.joburg",
+            "source_links": [
+                "https://visit.joburg"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "joburg-water",
+            "name": "Johannesburg Water",
+            "organisation_type": "entity",
+            "abbreviation": "JW",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.johannesburgwater.co.za",
+            "description": "Johannesburg Water supplies potable water and manages sanitation and wastewater services across the city.",
+            "source_reference": "https://www.johannesburgwater.co.za",
+            "source_links": [
+                "https://www.johannesburgwater.co.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "joshco",
+            "name": "Johannesburg Social Housing Company",
+            "organisation_type": "entity",
+            "abbreviation": "JOSHCO",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joshco.co.za",
+            "description": "The Johannesburg Social Housing Company develops and manages social and affordable rental housing in the city.",
+            "source_reference": "https://www.joshco.co.za",
+            "source_links": [
+                "https://www.joshco.co.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "jpc",
+            "name": "Joburg Property Company",
+            "organisation_type": "entity",
+            "abbreviation": "JPC",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.jhbproperty.co.za",
+            "description": "The Joburg Property Company manages the city property estate, including municipal property development, leasing and facilities management.",
+            "source_reference": "https://www.jhbproperty.co.za",
+            "source_links": [
+                "https://www.jhbproperty.co.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "jra",
+            "name": "Johannesburg Roads Agency",
+            "organisation_type": "entity",
+            "abbreviation": "JRA",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.jra.org.za",
+            "description": "The Johannesburg Roads Agency plans, constructs and maintains the city road network, stormwater infrastructure and road signage.",
+            "source_reference": "https://www.jra.org.za",
+            "source_links": [
+                "https://www.jra.org.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "metrobus",
+            "name": "Metrobus",
+            "organisation_type": "entity",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://mbus.joburg.org.za",
+            "description": "Metrobus is the City of Johannesburg municipal bus operator, providing scheduled public bus transport across the metro.",
+            "source_reference": "https://mbus.joburg.org.za",
+            "source_links": [
+                "https://mbus.joburg.org.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "mtc",
+            "name": "Metropolitan Trading Company",
+            "organisation_type": "entity",
+            "abbreviation": "MTC",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://mtc.joburg.org.za",
+            "description": "The Metropolitan Trading Company is the City of Johannesburg broadband and technology company, supplying wholesale data, dark fibre, lit fibre and connectivity services.",
+            "source_reference": "https://mtc.joburg.org.za",
+            "source_links": [
+                "https://mtc.joburg.org.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "office-of-city-manager",
+            "name": "Office of the City Manager",
+            "organisation_type": "office",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "The Office of the City Manager coordinates the administration of the City of Johannesburg, supporting the mayor, council and municipal departments.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-22T00:00:00+00:00",
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "pikitup",
+            "name": "Pikitup",
+            "organisation_type": "entity",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.pikitup.co.za",
+            "description": "Pikitup is the City of Johannesburg waste management utility, responsible for waste collection, recycling and disposal services.",
+            "source_reference": "https://www.pikitup.co.za",
+            "source_links": [
+                "https://www.pikitup.co.za"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "public-safety",
+            "name": "Public Safety",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Public safety services including law enforcement, by-law enforcement and emergency management in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "social-development",
+            "name": "Social Development",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Social development, welfare and community empowerment programmes in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "transport",
+            "name": "Transport",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Transport planning, public transport and mobility programmes for the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
+        },
+        {
+            "id": "water-management-biodiversity",
+            "name": "Water and Sanitation",
+            "organisation_type": "directorate",
+            "abbreviation": null,
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_url": "https://www.joburg.org.za",
+            "description": "Water resource management, biodiversity and natural environment conservation in the City of Johannesburg.",
+            "source_reference": "https://www.joburg.org.za",
+            "source_links": [
+                "https://www.joburg.org.za"
+            ],
+            "tier": "tier2",
+            "official_status": "active",
+            "verification_status": "pending",
+            "last_verified_at": null,
+            "last_updated": "2026-09-22T00:00:00+00:00"
         }
     ]
 }

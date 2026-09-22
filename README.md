@@ -43,7 +43,7 @@ coj-intelligent-content-platform/
 │   │   └── Http/           API controllers
 │   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation (/api/v1)
-│   ├── database/seed-data/ placeholder seed fixtures (replaced in Phase 3)
+│   ├── database/seed-data/ curated CoJ dataset (entities/sources/articles)
 │   └── storage/app/data/   JSON repository volume (gitignored runtime data)
 ├── docs/
 │   ├── architecture/    architecture documentation
@@ -75,8 +75,8 @@ coj-intelligent-content-platform/
 | Phase | Focus |
 |-------|-------|
 | 1 | Architecture + Scaffold (complete) |
-| 2 | Domain model + repository contracts + JSON drivers (**current**) |
-| 3 | CoJ dataset |
+| 2 | Domain model + repository contracts + JSON drivers (complete) |
+| 3 | CoJ dataset (complete) |
 | 4 | Search + deterministic ranking |
 | 5 | Exactly-three selection + explainability |
 | 6 | Content discovery architecture |
@@ -123,7 +123,7 @@ changes are required in Phases 1-2.
 ```bash
 cd backend
 
-# Seed the JSON repository from database/seed-data placeholders
+# Seed the JSON repository from the curated database/seed-data dataset
 php artisan cojmip:repository-seed
 
 # Show aggregated repository health
@@ -142,10 +142,14 @@ php artisan test
 
 ## Current Phase
 
-**Phase 2 — Domain Model + Repository Contracts + JSON Drivers.** The domain
-model (CoJOrganisation, Article, SourceTrust, RepositoryHealth/Policy),
-repository contracts, JSON persistence drivers, container wiring, seeding
-and health artisan commands are implemented with a 29-test PHPUnit suite.
-`database/seed-data/` holds synthetic placeholder fixtures to be replaced by
-the curated CoJ dataset in Phase 3. See `docs/architecture/README.md` for
-the full implementation status register.
+**Phase 3 — Curated CoJ dataset.** The platform domain model now also
+includes `VerificationStatus` (verified / pending / unverified) with
+verification metadata on organisations and source-trust records.
+`database/seed-data/` holds the curated City of Johannesburg dataset:
+13 municipal entities, 17 directorates, the Office of the City Manager,
+14 official source records and 16 foundation articles. Entities and sources
+verified against official domains are marked verified with `last_verified_at`;
+directorates and not-yet-re-verified entities are marked pending. Repository
+health (`cojmip:repository-health`) reports organisations by type and by
+verification status. The PHPUnit suite has grown to 47 tests. See
+`docs/architecture/README.md` for the full implementation status register.

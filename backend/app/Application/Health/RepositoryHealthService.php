@@ -64,6 +64,21 @@ final readonly class RepositoryHealthService implements RepositoryHealthContract
         $newest = $dates === [] ? null : max($dates);
         $oldest = $dates === [] ? null : min($dates);
 
+        $organisationsByType = [];
+        $organisationsByVerification = [];
+        foreach ($organisationRows as $organisation) {
+            $organisationsByType[$organisation->organisationType->value] ??= 0;
+            $organisationsByType[$organisation->organisationType->value]++;
+            $organisationsByVerification[$organisation->verificationStatus->value] ??= 0;
+            $organisationsByVerification[$organisation->verificationStatus->value]++;
+        }
+
+        $sourcesByVerification = [];
+        foreach ($sourceRows as $source) {
+            $sourcesByVerification[$source->verificationStatus->value] ??= 0;
+            $sourcesByVerification[$source->verificationStatus->value]++;
+        }
+
         if ($issues !== []) {
             $status = RepositoryHealth::STATUS_ERROR;
         } elseif (
@@ -92,6 +107,9 @@ final readonly class RepositoryHealthService implements RepositoryHealthContract
             archivedCount: $archived,
             unverifiedCount: $unverified,
             rejectedCount: $rejected,
+            organisationsByType: $organisationsByType,
+            organisationsByVerification: $organisationsByVerification,
+            sourcesByVerification: $sourcesByVerification,
             newestRetrievedAt: $newest instanceof DateTimeImmutable ? $newest : null,
             oldestRetrievedAt: $oldest instanceof DateTimeImmutable ? $oldest : null,
             status: $status,

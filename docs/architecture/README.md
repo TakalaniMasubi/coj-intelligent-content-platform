@@ -32,7 +32,7 @@ Authorised Sources
 
 ## Implementation Status
 
-**Current phase: Phase 2 — Domain Model + Repository Contracts + JSON Drivers.**
+**Current phase: Phase 3 — Curated CoJ dataset (complete, pending commit).**
 
 | Item | Status |
 |------|--------|
@@ -41,11 +41,11 @@ Authorised Sources
 | Application architecture boundaries | IMPLEMENTED (Phase 1) |
 | Configuration shell (`config/cojmip.php`) | IMPLEMENTED (Phase 1) |
 | Documentation structure | IMPLEMENTED (Phase 1) |
-| Domain model (Organisation, Article, Source, Repository) | IMPLEMENTED (Phase 2) |
+| Domain model (Organisation, Article, Source, Repository, Verification) | IMPLEMENTED (Phase 2/3) |
 | Repository contracts + JSON drivers | IMPLEMENTED (Phase 2) |
-| Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2) |
-| PHPUnit regression suite | IMPLEMENTED (Phase 2, 29 tests) |
-| CoJ dataset | PLANNED (Phase 3) |
+| Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2/3) |
+| PHPUnit regression suite | IMPLEMENTED (Phase 2/3, 47 tests) |
+| CoJ dataset | IMPLEMENTED (Phase 3) |
 | Search + deterministic ranking | PLANNED (Phase 4) |
 | Exactly-three selection + explanations | PLANNED (Phase 5) |
 | Content discovery | PLANNED (Phase 6) |
@@ -104,7 +104,9 @@ work identically with zero AI configuration.
 
 Every stored content item carries source provenance: source URL, source name,
 source tier, publication/retrieval dates, content hash and verification
-status. The system answers "where did this come from?" and never presents
+status. Organisations and sources additionally carry a `verification_status`
+(verified / pending / unverified) with a `last_verified_at` date where
+verified. The system answers "where did this come from?" and never presents
 unverified information as fact.
 
 ### 4. Exactly-Three Explainable Selection
@@ -136,8 +138,8 @@ each phase is validated and reported before the next begins.
 | Phase | Focus |
 |-------|-------|
 | 1 | Architecture + Scaffold (complete) |
-| 2 | Domain model + repository contracts + JSON drivers (current) |
-| 3 | CoJ dataset |
+| 2 | Domain model + repository contracts + JSON drivers (complete) |
+| 3 | CoJ dataset (complete) |
 | 4 | Search + deterministic ranking |
 | 5 | Exactly-three selection + explainability |
 | 6 | Content discovery architecture |
@@ -170,6 +172,7 @@ coj-intelligent-content-platform/
 │   │   │   ├── Organisation/  CoJOrganisation, OrganisationType/Status
 │   │   │   ├── Article/       Article, ArticleStatus
 │   │   │   ├── Source/        SourceTrust, SourceTier
+│   │   │   ├── Shared/        VerificationStatus (verified/pending/unverified)
 │   │   │   └── Repository/    RepositoryHealth, RepositoryPolicy
 │   │   ├── Application/    use-case services (seeding, health, paths)
 │   │   ├── Contracts/      repository ports (Organisation/Article/Source/Health)
@@ -177,7 +180,7 @@ coj-intelligent-content-platform/
 │   │   └── Http/           API controllers
 │   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation
-│   ├── database/seed-data/ placeholder seed fixtures (replaced in Phase 3)
+│   ├── database/seed-data/ curated CoJ dataset (entities/sources/articles)
 │   ├── storage/app/data/   JSON repository volume (gitignored runtime data)
 │   └── tests/              PHPUnit suites (unit + feature)
 ├── docs/               Documentation (architecture, requirements, api, user-guide)

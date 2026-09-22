@@ -27,6 +27,21 @@ class RepositoryHealthCommand extends Command
                     array_keys($report->byStatus),
                     array_values($report->byStatus),
                 ))],
+                ['Organisations by type', implode(' / ', array_map(
+                    fn ($key, $count) => "{$key}: {$count}",
+                    array_keys($report->organisationsByType),
+                    array_values($report->organisationsByType),
+                ))],
+                ['Organisations by verification', implode(' / ', array_map(
+                    fn ($key, $count) => "{$key}: {$count}",
+                    array_keys($report->organisationsByVerification),
+                    array_values($report->organisationsByVerification),
+                ))],
+                ['Sources by verification', implode(' / ', array_map(
+                    fn ($key, $count) => "{$key}: {$count}",
+                    array_keys($report->sourcesByVerification),
+                    array_values($report->sourcesByVerification),
+                ))],
                 ['Fresh', $report->freshCount],
                 ['Stale', $report->staleCount],
                 ['Expired', $report->expiredCount],

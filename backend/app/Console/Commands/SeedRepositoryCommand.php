@@ -38,7 +38,7 @@ class SeedRepositoryCommand extends Command
         $this->info('Repository seeded successfully.');
 
         if (str_contains($sourcePath, database_path('seed-data'))) {
-            $this->comment('NOTE: database/seed-data currently contains placeholder fixtures, to be replaced by the curated CoJ dataset in Phase 3.');
+            $this->comment('NOTE: database/seed-data contains the curated CoJ dataset from Phase 3 (entities verified, directorates pending verification).');
         }
 
         return self::SUCCESS;

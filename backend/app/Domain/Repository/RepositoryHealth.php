@@ -24,7 +24,13 @@ final readonly class RepositoryHealth
         public int $archivedCount,
         public int $unverifiedCount,
         public int $rejectedCount,
-        public ?DateTimeImmutable $newestRetrievedAt,
+        /** @var array<string, int> */
+        public array $organisationsByType = [],
+        /** @var array<string, int> */
+        public array $organisationsByVerification = [],
+        /** @var array<string, int> */
+        public array $sourcesByVerification = [],
+        public ?DateTimeImmutable $newestRetrievedAt = null,
         public ?DateTimeImmutable $oldestRetrievedAt,
         public string $status,
         /** @var string[] */
@@ -51,6 +57,9 @@ final readonly class RepositoryHealth
             'archived_count' => $this->archivedCount,
             'unverified_count' => $this->unverifiedCount,
             'rejected_count' => $this->rejectedCount,
+            'organisations_by_type' => $this->organisationsByType,
+            'organisations_by_verification' => $this->organisationsByVerification,
+            'sources_by_verification' => $this->sourcesByVerification,
             'newest_retrieved_at' => $this->newestRetrievedAt?->format(DATE_ATOM),
             'oldest_retrieved_at' => $this->oldestRetrievedAt?->format(DATE_ATOM),
             'status' => $this->status,

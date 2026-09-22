@@ -2,6 +2,7 @@
 
 namespace App\Domain\Organisation;
 
+use App\Domain\Shared\VerificationStatus;
 use App\Domain\Source\SourceTier;
 use DateTimeImmutable;
 
@@ -22,6 +23,11 @@ final readonly class CoJOrganisation
         public SourceTier $tier = SourceTier::Tier2,
         public OrganisationStatus $officialStatus = OrganisationStatus::Active,
         public ?DateTimeImmutable $lastUpdated = null,
+        public ?string $abbreviation = null,
+        public ?string $description = null,
+        public ?string $sourceReference = null,
+        public VerificationStatus $verificationStatus = VerificationStatus::Pending,
+        public ?DateTimeImmutable $lastVerifiedAt = null,
     ) {
     }
 
@@ -44,9 +50,11 @@ final readonly class CoJOrganisation
             jurisdiction: isset($data['jurisdiction']) && is_string($data['jurisdiction'])
                 ? $data['jurisdiction']
                 : 'City of Johannesburg',
-            officialWebsite: isset($data['official_website']) && is_string($data['official_website'])
-                ? $data['official_website']
-                : null,
+            officialWebsite: isset($data['official_url']) && is_string($data['official_url'])
+                ? $data['official_url']
+                : (isset($data['official_website']) && is_string($data['official_website'])
+                    ? $data['official_website']
+                    : null),
             mandate: isset($data['mandate']) && is_string($data['mandate']) ? $data['mandate'] : null,
             sourceLinks: self::strings($data['source_links'] ?? []),
             tier: isset($data['tier']) && is_string($data['tier']) ? SourceTier::fromName($data['tier']) : SourceTier::Tier2,
@@ -55,6 +63,17 @@ final readonly class CoJOrganisation
                 : OrganisationStatus::Active,
             lastUpdated: isset($data['last_updated']) && is_string($data['last_updated'])
                 ? new DateTimeImmutable($data['last_updated'])
+                : null,
+            abbreviation: isset($data['abbreviation']) && is_string($data['abbreviation']) ? $data['abbreviation'] : null,
+            description: isset($data['description']) && is_string($data['description']) ? $data['description'] : null,
+            sourceReference: isset($data['source_reference']) && is_string($data['source_reference'])
+                ? $data['source_reference']
+                : null,
+            verificationStatus: isset($data['verification_status']) && is_string($data['verification_status'])
+                ? VerificationStatus::fromName($data['verification_status'])
+                : VerificationStatus::Pending,
+            lastVerifiedAt: isset($data['last_verified_at']) && is_string($data['last_verified_at'])
+                ? new DateTimeImmutable($data['last_verified_at'])
                 : null,
         );
     }
@@ -68,12 +87,17 @@ final readonly class CoJOrganisation
             'aliases' => array_values($this->aliases),
             'head' => $this->head?->toArray(),
             'jurisdiction' => $this->jurisdiction,
-            'official_website' => $this->officialWebsite,
+            'official_url' => $this->officialWebsite,
             'mandate' => $this->mandate,
             'source_links' => array_values($this->sourceLinks),
             'tier' => $this->tier->value,
             'official_status' => $this->officialStatus->value,
             'last_updated' => $this->lastUpdated?->format(DATE_ATOM),
+            'abbreviation' => $this->abbreviation,
+            'description' => $this->description,
+            'source_reference' => $this->sourceReference,
+            'verification_status' => $this->verificationStatus->value,
+            'last_verified_at' => $this->lastVerifiedAt?->format(DATE_ATOM),
         ];
 
         return $data;
