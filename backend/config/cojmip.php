@@ -8,9 +8,9 @@
 | Central configuration namespace for the CoJ Intelligent Content &
 | Municipal Intelligence Platform.
 |
-| PHASE 1 STATUS:     This file establishes only the structural shell.
-|                     Values shown are empty/feature-flag defaults and
-|                     are NOT production tuning parameters.
+| PHASE 2 STATUS:     This file establishes the structural shell plus the
+|                     repository volume and freshness policy defaults used by
+|                     the JSON-first repository layer (Phase 2).
 |
 | PLANNED SECTIONS (populated in later phases):
 |   - source_tiers      -> verified mapping of SourceTier enum to rankings
@@ -19,8 +19,8 @@
 |   - layouts           -> newsletter layout registry (Phase 9)
 |   - feature_flags     -> runtime capability switches
 |
-| No seeding weights, thresholds or trust scores are invented here.
-| Everything below is a documented placeholder for phased development.
+| No seeding weights or trust scores are invented here. The freshness policy
+| defaults are documented, configurable operational thresholds (Phase 2).
 |
 */
 
@@ -62,6 +62,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Repository
+    |--------------------------------------------------------------------------
+    |
+    | JSON-first repository volume. Override with COJMIP_REPOSITORY_VOLUME so
+    | environment-specific data directories can be used without code changes
+    | (e.g. tests point at tests/Fixtures/data).
+    |
+    */
+    'repository' => [
+        'volume' => env('COJMIP_REPOSITORY_VOLUME', storage_path('app/data')),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Ranking Weights
     |--------------------------------------------------------------------------
     |
@@ -76,11 +90,23 @@ return [
     | Freshness Thresholds
     |--------------------------------------------------------------------------
     |
-    | PLANNED (Phase 4/7): content freshness band thresholds (e.g. "fresh",
-    | "needs verification", "outdated"). Deliberately empty in Phase 1.
+    | Operational policy defaults consumed by Domain\Repository\RepositoryPolicy
+    | (Phase 2). They drive age-band classification of repository content:
+    |   recent_window_days  -> "fresh" window (most recent band)
+    |   stale_after_days    -> content older than this is "stale"
+    |   expired_after_days  -> content older than this is "expired"
+    |   archived_after_days -> content older than this is "archived"
+    |
+    | These are configurable defaults, not production tuning claims; they can
+    | be adjusted in later phases as requirements firm up.
     |
     */
-    'freshness' => [],
+    'freshness' => [
+        'recent_window_days' => 7,
+        'stale_after_days' => 30,
+        'expired_after_days' => 180,
+        'archived_after_days' => 365,
+    ],
 
     /*
     |--------------------------------------------------------------------------

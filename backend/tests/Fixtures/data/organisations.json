@@ -1,0 +1,56 @@
+{
+    "organisations": [
+        {
+            "id": "coj-org-fix-0001",
+            "name": "Fixture Example Entity",
+            "organisation_type": "entity",
+            "aliases": [
+                "Fixture Entity"
+            ],
+            "head": {
+                "name": "J. Doe",
+                "title": "Chief Executive",
+                "role_summary": "Fixture head."
+            },
+            "jurisdiction": "City of Johannesburg",
+            "official_website": "https://fixture-entity.example",
+            "mandate": "Fixture mandate.",
+            "source_links": [
+                "https://fixture-entity.example/mandate"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "last_updated": "2026-09-01T00:00:00+00:00"
+        },
+        {
+            "id": "coj-org-fix-0002",
+            "name": "Fixture Example Directorate",
+            "organisation_type": "directorate",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_website": null,
+            "mandate": null,
+            "source_links": [],
+            "tier": "tier2",
+            "official_status": "active",
+            "last_updated": "2026-09-01T00:00:00+00:00"
+        },
+        {
+            "id": "coj-org-fix-0003",
+            "name": "Fixture Example Office",
+            "organisation_type": "office",
+            "aliases": [
+                "Fixture Office"
+            ],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_website": null,
+            "mandate": null,
+            "source_links": [],
+            "tier": "tier3",
+            "official_status": "dormant",
+            "last_updated": "2026-09-01T00:00:00+00:00"
+        }
+    ]
+}

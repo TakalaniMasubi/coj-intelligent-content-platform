@@ -1,0 +1,54 @@
+{
+    "organisations": [
+        {
+            "id": "coj-org-0001",
+            "name": "Example Utility Entity",
+            "organisation_type": "entity",
+            "aliases": [
+                "Example Utility"
+            ],
+            "head": {
+                "name": "A. Person",
+                "title": "Managing Director",
+                "role_summary": "Synthetic placeholder head of organisation."
+            },
+            "jurisdiction": "City of Johannesburg",
+            "official_website": "https://www.example-utility.co.za",
+            "mandate": "Synthetic placeholder mandate.",
+            "source_links": [
+                "https://www.example-utility.co.za/about"
+            ],
+            "tier": "tier1",
+            "official_status": "active",
+            "last_updated": "2026-09-01T00:00:00+00:00"
+        },
+        {
+            "id": "coj-org-0002",
+            "name": "Example Directorate",
+            "organisation_type": "directorate",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_website": null,
+            "mandate": null,
+            "source_links": [],
+            "tier": "tier2",
+            "official_status": "active",
+            "last_updated": "2026-09-01T00:00:00+00:00"
+        },
+        {
+            "id": "coj-org-0003",
+            "name": "Example Regional Office",
+            "organisation_type": "office",
+            "aliases": [],
+            "head": null,
+            "jurisdiction": "City of Johannesburg",
+            "official_website": null,
+            "mandate": null,
+            "source_links": [],
+            "tier": "tier3",
+            "official_status": "dormant",
+            "last_updated": "2026-09-01T00:00:00+00:00"
+        }
+    ]
+}

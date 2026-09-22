@@ -1,0 +1,56 @@
+{
+    "articles": [
+        {
+            "id": "coj-art-0001",
+            "source_name": "coj.example.gov.za",
+            "source_url": "https://coj.example.gov.za/news/one",
+            "title": "Synthetic Article One",
+            "summary": "Synthetic summary one.",
+            "subject": "example",
+            "organisation_ids": [
+                "coj-org-0001"
+            ],
+            "tier": "tier1",
+            "status": "verified",
+            "published_at": "2026-09-20T00:00:00+00:00",
+            "retrieved_at": "2026-09-21T00:00:00+00:00",
+            "content_hash": "synthetic-content-hash-0001",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-0002",
+            "source_name": "joburg-municipal-news.example",
+            "source_url": "https://joburg-municipal-news.example/item/two",
+            "title": "Synthetic Article Two",
+            "summary": "Synthetic summary two.",
+            "subject": "example",
+            "organisation_ids": [
+                "coj-org-0001",
+                "coj-org-0002"
+            ],
+            "tier": "tier2",
+            "status": "unverified",
+            "published_at": "2026-08-01T00:00:00+00:00",
+            "retrieved_at": "2026-09-21T00:00:00+00:00",
+            "content_hash": "synthetic-content-hash-0002",
+            "archived_at": null
+        },
+        {
+            "id": "coj-art-0003",
+            "source_name": "citizen-blog.example",
+            "source_url": "https://citizen-blog.example/old-post",
+            "title": "Synthetic Old Article",
+            "summary": "Synthetic old summary.",
+            "subject": "example",
+            "organisation_ids": [
+                "coj-org-0003"
+            ],
+            "tier": "tier3",
+            "status": "rejected",
+            "published_at": "2020-01-01T00:00:00+00:00",
+            "retrieved_at": "2020-01-02T00:00:00+00:00",
+            "content_hash": "synthetic-content-hash-0003",
+            "archived_at": null
+        }
+    ]
+}

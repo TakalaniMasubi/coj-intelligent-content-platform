@@ -32,17 +32,19 @@ Authorised Sources
 
 ## Implementation Status
 
-**Current phase: Phase 1 — Architecture + Scaffold.**
+**Current phase: Phase 2 — Domain Model + Repository Contracts + JSON Drivers.**
 
 | Item | Status |
 |------|--------|
-| Laravel 12 scaffold + project identity | IMPLEMENTED |
-| Versioned API foundation (`/api/v1`) | IMPLEMENTED (ping) |
-| Application architecture boundaries | IMPLEMENTED (empty) |
-| Configuration shell (`config/cojmip.php`) | IMPLEMENTED (shell) |
-| Documentation structure | IMPLEMENTED |
-| Domain model | PLANNED (Phase 2) |
-| Repository contracts + JSON drivers | PLANNED (Phase 2) |
+| Laravel 12 scaffold + project identity | IMPLEMENTED (Phase 1) |
+| Versioned API foundation (`/api/v1`) | IMPLEMENTED (Phase 1, ping) |
+| Application architecture boundaries | IMPLEMENTED (Phase 1) |
+| Configuration shell (`config/cojmip.php`) | IMPLEMENTED (Phase 1) |
+| Documentation structure | IMPLEMENTED (Phase 1) |
+| Domain model (Organisation, Article, Source, Repository) | IMPLEMENTED (Phase 2) |
+| Repository contracts + JSON drivers | IMPLEMENTED (Phase 2) |
+| Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2) |
+| PHPUnit regression suite | IMPLEMENTED (Phase 2, 29 tests) |
 | CoJ dataset | PLANNED (Phase 3) |
 | Search + deterministic ranking | PLANNED (Phase 4) |
 | Exactly-three selection + explanations | PLANNED (Phase 5) |
@@ -133,8 +135,8 @@ each phase is validated and reported before the next begins.
 
 | Phase | Focus |
 |-------|-------|
-| 1 | Architecture + Scaffold (current) |
-| 2 | Domain model + repository contracts + JSON drivers |
+| 1 | Architecture + Scaffold (complete) |
+| 2 | Domain model + repository contracts + JSON drivers (current) |
 | 3 | CoJ dataset |
 | 4 | Search + deterministic ranking |
 | 5 | Exactly-three selection + explainability |
@@ -164,15 +166,20 @@ each phase is validated and reported before the next begins.
 coj-intelligent-content-platform/
 ├── backend/            Laravel 12 application
 │   ├── app/
-│   │   ├── Domain/         pure domain concepts (empty in Phase 1)
-│   │   ├── Application/    use-case services (empty in Phase 1)
-│   │   ├── Contracts/      ports (directory boundary in Phase 1)
-│   │   ├── Infrastructure/ drivers (empty in Phase 1)
+│   │   ├── Domain/         pure domain concepts
+│   │   │   ├── Organisation/  CoJOrganisation, OrganisationType/Status
+│   │   │   ├── Article/       Article, ArticleStatus
+│   │   │   ├── Source/        SourceTrust, SourceTier
+│   │   │   └── Repository/    RepositoryHealth, RepositoryPolicy
+│   │   ├── Application/    use-case services (seeding, health, paths)
+│   │   ├── Contracts/      repository ports (Organisation/Article/Source/Health)
+│   │   ├── Infrastructure/ JSON persistence drivers (gateway + 3 repositories)
 │   │   └── Http/           API controllers
-│   ├── config/cojmip.php   CoJ-MIP configuration shell
+│   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation
-│   ├── storage/app/data/   future JSON data files
-│   └── tests/              PHPUnit suites
+│   ├── database/seed-data/ placeholder seed fixtures (replaced in Phase 3)
+│   ├── storage/app/data/   JSON repository volume (gitignored runtime data)
+│   └── tests/              PHPUnit suites (unit + feature)
 ├── docs/               Documentation (architecture, requirements, api, user-guide)
 └── README.md           Project overview
 ```

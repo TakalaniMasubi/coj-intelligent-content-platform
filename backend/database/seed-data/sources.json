@@ -1,0 +1,28 @@
+{
+    "source_trust": [
+        {
+            "source_name": "coj.example.gov.za",
+            "display_name": "Example City Official Source",
+            "tier": "tier1",
+            "category": "official",
+            "notes": "Synthetic placeholder classification.",
+            "active": true
+        },
+        {
+            "source_name": "joburg-municipal-news.example",
+            "display_name": "Example Municipal News",
+            "tier": "tier2",
+            "category": "municipal",
+            "notes": "Synthetic placeholder classification.",
+            "active": true
+        },
+        {
+            "source_name": "citizen-blog.example",
+            "display_name": "Example Citizen Blog",
+            "tier": "tier3",
+            "category": "community",
+            "notes": "Synthetic placeholder classification.",
+            "active": false
+        }
+    ]
+}

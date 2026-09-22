@@ -41,9 +41,10 @@ coj-intelligent-content-platform/
 │   │   ├── Contracts/      repository / AI / discovery ports
 │   │   ├── Infrastructure/ concrete drivers (JSON persistence, etc.)
 │   │   └── Http/           API controllers
-│   ├── config/cojmip.php   CoJ-MIP configuration shell
+│   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation (/api/v1)
-│   └── storage/app/data/   future JSON data files
+│   ├── database/seed-data/ placeholder seed fixtures (replaced in Phase 3)
+│   └── storage/app/data/   JSON repository volume (gitignored runtime data)
 ├── docs/
 │   ├── architecture/    architecture documentation
 │   ├── requirements/    requirements baseline (planned)
@@ -73,8 +74,8 @@ coj-intelligent-content-platform/
 
 | Phase | Focus |
 |-------|-------|
-| 1 | Architecture + Scaffold (**current**) |
-| 2 | Domain model + repository contracts + JSON drivers |
+| 1 | Architecture + Scaffold (complete) |
+| 2 | Domain model + repository contracts + JSON drivers (**current**) |
 | 3 | CoJ dataset |
 | 4 | Search + deterministic ranking |
 | 5 | Exactly-three selection + explainability |
@@ -115,7 +116,22 @@ php artisan serve             # http://localhost:8000
 ```
 
 The SQLite database is created automatically by the scaffold. No migration
-changes are required in Phase 1.
+changes are required in Phases 1-2.
+
+### Repository commands
+
+```bash
+cd backend
+
+# Seed the JSON repository from database/seed-data placeholders
+php artisan cojmip:repository-seed
+
+# Show aggregated repository health
+php artisan cojmip:repository-health
+```
+
+The repository volume defaults to `backend/storage/app/data`; point
+`COJMIP_REPOSITORY_VOLUME` elsewhere to use a different data directory.
 
 ## Testing
 
@@ -126,7 +142,10 @@ php artisan test
 
 ## Current Phase
 
-**Phase 1 — Architecture + Scaffold.** Laravel 12 application scaffolded,
-versioned API foundation in place, architecture boundaries and documentation
-established. See `docs/architecture/README.md` for the full implementation
-status register.
+**Phase 2 — Domain Model + Repository Contracts + JSON Drivers.** The domain
+model (CoJOrganisation, Article, SourceTrust, RepositoryHealth/Policy),
+repository contracts, JSON persistence drivers, container wiring, seeding
+and health artisan commands are implemented with a 29-test PHPUnit suite.
+`database/seed-data/` holds synthetic placeholder fixtures to be replaced by
+the curated CoJ dataset in Phase 3. See `docs/architecture/README.md` for
+the full implementation status register.
