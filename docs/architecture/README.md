@@ -1,0 +1,178 @@
+# CoJ-MIP Architecture
+
+CoJ Intelligent Content & Municipal Intelligence Platform
+
+## Project Purpose
+
+CoJ-MIP is a municipal intelligence and content platform designed to
+**discover, validate, organise, rank and present** information about
+authorised City of Johannesburg sources and organisations. The executive
+newsletter is **one output** of the platform — the platform itself is an
+information-management and intelligence system.
+
+Target long-term pipeline:
+
+```
+Authorised Sources
+  → Content Discovery
+  → Extraction
+  → Validation
+  → Normalisation
+  → Deduplication
+  → Knowledge Repository
+  → Natural-Language Understanding
+  → Relevance Ranking
+  → Explainable Selection
+  → Content Generation
+  → Dashboard
+  → Executive Newsletter
+  → PDF
+  → Audit Trail
+```
+
+## Implementation Status
+
+**Current phase: Phase 1 — Architecture + Scaffold.**
+
+| Item | Status |
+|------|--------|
+| Laravel 12 scaffold + project identity | IMPLEMENTED |
+| Versioned API foundation (`/api/v1`) | IMPLEMENTED (ping) |
+| Application architecture boundaries | IMPLEMENTED (empty) |
+| Configuration shell (`config/cojmip.php`) | IMPLEMENTED (shell) |
+| Documentation structure | IMPLEMENTED |
+| Domain model | PLANNED (Phase 2) |
+| Repository contracts + JSON drivers | PLANNED (Phase 2) |
+| CoJ dataset | PLANNED (Phase 3) |
+| Search + deterministic ranking | PLANNED (Phase 4) |
+| Exactly-three selection + explanations | PLANNED (Phase 5) |
+| Content discovery | PLANNED (Phase 6) |
+| Verification + provenance | PLANNED (Phase 7) |
+| Dashboard | PLANNED (Phase 8) |
+| Newsletter engine | PLANNED (Phase 9) |
+| Exact 3-page PDF | PLANNED (Phase 10) |
+| Full testing/security/observability | PLANNED (Phase 11) |
+| AI integration | PLANNED (Phase 12) |
+| Scheduler + automated sync | PLANNED (Phase 13) |
+| Deployment / production readiness | PLANNED (Phase 14) |
+
+## Technology Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Language | PHP 8.2 |
+| Framework | Laravel 12 |
+| Frontend | Blade + Tailwind CSS v4 (Vite) |
+| Data (initial) | JSON files under `storage/app/data/` |
+| Data (future) | Eloquent/MySQL behind the same repository contracts |
+| PDF (future) | Dompdf (Phase 10) |
+| Tests | PHPUnit 11 |
+| AI (future) | Provider-agnostic (local deterministic provider first) |
+
+## Architectural Layers
+
+```
+Presentation   Blade views + Tailwind
+API            routes/api.php → app/Http/Controllers/Api/V1
+Application    use-case services (one module per capability)
+Domain         pure models/enums/value objects
+Contracts      repository / AI / discovery ports
+Infrastructure concrete drivers (JSON persistence, AI providers, adapters)
+```
+
+See `backend/app/README.md` for the layer responsibilities and dependency rule.
+
+## Key Architectural Principles
+
+### 1. JSON-First Repository Strategy
+
+Phase 2 introduces repository **contracts** implemented by **JSON file
+drivers**. Application services depend only on the contracts. Later, the same
+contracts are implemented with Eloquent/MySQL — no business logic changes.
+JSON files are modular (one file per entity type), not one giant blob.
+
+### 2. Deterministic-First Intelligence
+
+The core ranking, selection and explainability engine is deterministic and
+works with **no external AI**. An AI provider only enhances natural-language
+understanding (Phase 12) through a pluggable contract. The platform must
+work identically with zero AI configuration.
+
+### 3. Provenance-First Design
+
+Every stored content item carries source provenance: source URL, source name,
+source tier, publication/retrieval dates, content hash and verification
+status. The system answers "where did this come from?" and never presents
+unverified information as fact.
+
+### 4. Exactly-Three Explainable Selection
+
+Newsletter generation selects **exactly three** relevant organisations,
+based on a reproducible relevance score. Every selection stores its reasons.
+If fewer than three verified results exist, the system reports insufficiency
+rather than silently filling gaps.
+
+### 5. Content/Layout/Branding/PDF Separation
+
+Newsletter content, layout templates, branding assets and PDF rendering are
+independent layers. New layouts can be added without touching the
+composition engine or branding system.
+
+### 6. No Fabricated Information
+
+AI-generated claims must trace back to repository data or an approved source.
+Where evidence is insufficient the system says:
+"Insufficient verified information available."
+
+### 7. Phase-Gated Development
+
+Development proceeds through approved phases (below). Phases are sequential;
+each phase is validated and reported before the next begins.
+
+## Development Phases
+
+| Phase | Focus |
+|-------|-------|
+| 1 | Architecture + Scaffold (current) |
+| 2 | Domain model + repository contracts + JSON drivers |
+| 3 | CoJ dataset |
+| 4 | Search + deterministic ranking |
+| 5 | Exactly-three selection + explainability |
+| 6 | Content discovery architecture |
+| 7 | Verification + provenance |
+| 8 | Professional dashboard |
+| 9 | Newsletter engine |
+| 10 | Exact 3-page PDF |
+| 11 | Testing + security + observability |
+| 12 | AI integration |
+| 13 | Scheduler + automated sync |
+| 14 | Deployment + production readiness |
+
+## Security Posture (Foundation)
+
+- Secrets live in `.env` only; `.env.example` documents required keys; `.env`
+  is never committed.
+- No API keys, tokens or credentials in source code.
+- External webpages are treated as **data**, never as instructions
+  (prompt-injection protection applies from Phase 6 onward).
+- Input validation and safe content handling are phased in alongside each
+  feature rather than bolted on at the end.
+
+## Repository Structure
+
+```
+coj-intelligent-content-platform/
+├── backend/            Laravel 12 application
+│   ├── app/
+│   │   ├── Domain/         pure domain concepts (empty in Phase 1)
+│   │   ├── Application/    use-case services (empty in Phase 1)
+│   │   ├── Contracts/      ports (directory boundary in Phase 1)
+│   │   ├── Infrastructure/ drivers (empty in Phase 1)
+│   │   └── Http/           API controllers
+│   ├── config/cojmip.php   CoJ-MIP configuration shell
+│   ├── routes/api.php      versioned API foundation
+│   ├── storage/app/data/   future JSON data files
+│   └── tests/              PHPUnit suites
+├── docs/               Documentation (architecture, requirements, api, user-guide)
+└── README.md           Project overview
+```
