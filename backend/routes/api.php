@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\IntelligenceSearchController;
+use App\Http\Controllers\Api\V1\IntelligenceSelectController;
 use App\Http\Controllers\Api\V1\SystemController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 | The intelligence, discovery, newsletter and repository endpoints are
 | registered here as they are implemented. Foundation-level endpoint (ping)
-| established in Phase 1; intelligence search added in Phase 4.
+| established in Phase 1; intelligence search added in Phase 4; explainable
+| top-three selection added in Phase 5.
 |
 */
 
 Route::prefix('v1')->group(function () {
     Route::get('/ping', [SystemController::class, 'ping']);
     Route::post('/intelligence/search', [IntelligenceSearchController::class, 'search']);
+    Route::post('/intelligence/select', [IntelligenceSelectController::class, 'select']);
 });

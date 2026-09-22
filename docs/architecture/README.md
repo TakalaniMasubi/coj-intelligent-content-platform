@@ -32,7 +32,7 @@ Authorised Sources
 
 ## Implementation Status
 
-**Current phase: Phase 4 — Deterministic municipal intelligence search (implemented, pending commit).**
+**Current phase: Phase 5 — Explainable top-three municipal organisation selection (implemented).**
 
 | Item | Status |
 |------|--------|
@@ -44,11 +44,12 @@ Authorised Sources
 | Domain model (Organisation, Article, Source, Repository, Verification) | IMPLEMENTED (Phase 2/3) |
 | Repository contracts + JSON drivers | IMPLEMENTED (Phase 2) |
 | Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2/3) |
-| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4, 86 tests) |
+| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4/5, 118 tests) |
 | CoJ dataset | IMPLEMENTED (Phase 3) |
 | Search + deterministic ranking | IMPLEMENTED (Phase 4) |
 | Intelligence search API + UI | IMPLEMENTED (Phase 4) |
-| Exactly-three selection + explanations | PLANNED (Phase 5) |
+| Exactly-three selection + explanations | IMPLEMENTED (Phase 5) |
+| Selection decision history + repetition control | IMPLEMENTED (Phase 5) |
 | Content discovery | PLANNED (Phase 6) |
 | Verification + provenance | PLANNED (Phase 7) |
 | Dashboard | PLANNED (Phase 8) |
@@ -113,9 +114,14 @@ unverified information as fact.
 ### 4. Exactly-Three Explainable Selection
 
 Newsletter generation selects **exactly three** relevant organisations,
-based on a reproducible relevance score. Every selection stores its reasons.
-If fewer than three verified results exist, the system reports insufficiency
-rather than silently filling gaps.
+based on a reproducible relevance score. Every selection stores its reasons
+and is persisted to a selection decision history. If fewer than three
+eligible results exist, the system reports insufficiency rather than
+silently filling gaps. A repetition preference (configured penalty per
+prior selection inside a rolling window, capped) balances fairness across
+organisations without ever sacrificing relevance: no history means no
+penalty, and an irrelevant organisation is never added just to avoid
+repetition.
 
 ### 5. Content/Layout/Branding/PDF Separation
 
@@ -141,8 +147,8 @@ each phase is validated and reported before the next begins.
 | 1 | Architecture + Scaffold (complete) |
 | 2 | Domain model + repository contracts + JSON drivers (complete) |
 | 3 | CoJ dataset (complete) |
-| 4 | Search + deterministic ranking (implemented) |
-| 5 | Exactly-three selection + explainability |
+| 4 | Search + deterministic ranking (complete) |
+| 5 | Exactly-three selection + explainability (implemented) |
 | 6 | Content discovery architecture |
 | 7 | Verification + provenance |
 | 8 | Professional dashboard |
@@ -174,11 +180,11 @@ coj-intelligent-content-platform/
 │   │   │   ├── Article/       Article, ArticleStatus
 │   │   │   ├── Source/        SourceTrust, SourceTier
 │   │   │   ├── Shared/        VerificationStatus (verified/pending/unverified)
-│   │   │   ├── Intelligence/  SearchMatch, SearchResult, SearchResponse
+│   │   │   ├── Intelligence/  SearchMatch, SearchResult, SearchResponse, SelectionDecision, SelectionOutcome
 │   │   │   └── Repository/    RepositoryHealth, RepositoryPolicy
-│   │   ├── Application/    use-case services (seeding, health, paths, intelligence)
-│   │   ├── Contracts/      repository ports + intelligence contract
-│   │   ├── Infrastructure/ JSON persistence drivers (gateway + 3 repositories)
+│   │   ├── Application/    use-case services (seeding, health, paths, intelligence, selection)
+│   │   ├── Contracts/      repository ports + intelligence/selection contracts
+│   │   ├── Infrastructure/ JSON persistence drivers (gateway + 4 repositories)
 │   │   └── Http/           API controllers + form requests
 │   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation

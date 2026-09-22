@@ -114,6 +114,43 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Selection Policy
+    |--------------------------------------------------------------------------
+    |
+    | Top-three selection policy (Phase 5).
+    |
+    |   required        exactly how many organisations a successful selection
+    |                   must contain
+    |   min_score       a candidate must reach this adjusted relevance score
+    |                   to be eligible; fewer than `required` eligible
+    |                   candidates produce an insufficient-results state and
+    |                   the system never invents or duplicates organisations
+    |
+    | Repetition control: the persisted selection history applies a
+    | configurable penalty to organisations selected recently, so the same
+    | organisation does not dominate repeated requests. With no history the
+    | penalty is zero — nothing is fabricated. `max_penalty` caps the
+    | adjustment so strong relevance can always overcome repetition.
+    |
+    | Verification is handled by the Phase 4 ranking already: verified,
+    | pending and unverified records remain visibly distinct and are never
+    | treated as identical, while a strongly relevant pending organisation
+    | remains selectable.
+    |
+    */
+    'selection' => [
+        'required' => 3,
+        'min_score' => 20,
+        'repetition' => [
+            'enabled' => true,
+            'per_selection' => 4,
+            'window_days' => 30,
+            'max_penalty' => 25,
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Freshness Thresholds
     |--------------------------------------------------------------------------
     |

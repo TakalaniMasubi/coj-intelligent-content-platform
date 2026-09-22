@@ -77,8 +77,8 @@ coj-intelligent-content-platform/
 | 1 | Architecture + Scaffold (complete) |
 | 2 | Domain model + repository contracts + JSON drivers (complete) |
 | 3 | CoJ dataset (complete) |
-| 4 | Search + deterministic ranking (implemented) |
-| 5 | Exactly-three selection + explainability |
+| 4 | Search + deterministic ranking (complete) |
+| 5 | Exactly-three selection + explainability (implemented) |
 | 6 | Content discovery architecture |
 | 7 | Verification + provenance |
 | 8 | Professional dashboard |
@@ -153,6 +153,37 @@ php artisan serve     # then open http://localhost:8000/intelligence
 - Same repository + same query always yields the same ranking (ties broken by
   organisation name, then id).
 
+### Explainable top-three selection
+
+The same deterministic ranking powers a selection policy that recommends
+**exactly three** municipal organisations:
+
+```bash
+cd backend
+php artisan serve     # then open http://localhost:8000/intelligence
+```
+
+- **UI:** the "Select Top 3" button on `/intelligence` shows the TOP 3
+  block with rank, original + adjusted relevance scores, verification status,
+  repetition adjustment and "why selected" reasons built only from real
+  matches.
+- **API:** `POST /api/v1/intelligence/select` with the same query shape.
+  A successful selection returns `{success: true, data: {original_query,
+  selected_count, selections}}`; when fewer than three candidates reach the
+  relevance floor it returns `{success: false, status:
+  "insufficient_results", required, available, results}`.
+- **Selection policy (`config/cojmip.php` → `selection`):** candidates must
+  score ≥ 20; the top three are chosen in ranking order; verification status
+  is preserved and exposed (a strongly relevant pending organisation can be
+  selected, with the status always shown).
+- **Repetition control:** each selection decision is persisted as history
+  (`SelectionDecisionRepositoryContract` → JSON). A prior selection inside
+  the 30-day window lowers a candidate's score by 4 points per occurrence,
+  capped at 25 — no history means no penalty, and an irrelevant organisation
+  is never added just to avoid repetition (strong relevance wins).
+- Deterministic: same repository + query + history = same result, no
+  randomness. The PHPUnit suite now has 118 tests.
+
 ## Testing
 
 ```bash
@@ -162,13 +193,18 @@ php artisan test
 
 ## Current Phase
 
-**Phase 4 — Deterministic municipal intelligence search.** The curated
-Phase 3 repository now has an explainable search engine: a normalisation +
-term-extraction pipeline (stop-word aware, punctuation/whitespace/duplicate
-resistant), verification-aware presence scoring with configurable weights,
-deterministic tie-breaking and per-result explanations. It is exposed as
-`POST /api/v1/intelligence/search` and a professional Blade + self-contained
-CSS screen at `/intelligence`. Verification status (verified / pending /
-unverified) is always surfaced separately from the score. The PHPUnit suite
-now has 86 tests. See `docs/architecture/README.md` for the full
-implementation status register.
+**Phase 5 — Explainable top-three municipal organisation selection.** On top
+of the Phase 4 search engine, a dedicated `OrganisationSelector` policy now
+recommends exactly three organisations: candidates must reach a relevance
+floor, the top three are chosen deterministically in ranking order, and the
+verification status of every selection is preserved and exposed. Every
+successful selection is persisted to a decision history used for repetition
+control (configurable 4-point penalty per prior selection in a 30-day window,
+capped at 25; no history means no penalty; strong relevance always beats
+repetition). The selection is exposed as `POST /api/v1/intelligence/select`
+and a "Select Top 3" action on the `/intelligence` screen that shows the
+TOP 3 with original + adjusted scores, verification badges, repetition
+adjustment and "why selected" reasons. When fewer than three candidates are
+eligible the API reports an explicit `insufficient_results` state instead of
+padding the list. The PHPUnit suite now has 118 tests. See
+`docs/architecture/README.md` for the full implementation status register.
