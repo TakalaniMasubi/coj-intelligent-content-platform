@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>CoJ-MIP — Municipal Intelligence</title>
+        <link rel="icon" type="image/jpeg" href="{{ asset('images/coj-initials.jpg') }}">
         <style>
             :root {
                 --ink: #101418;
@@ -43,13 +44,21 @@
             }
             .brand { display: flex; align-items: center; gap: 12px; }
             .brand-mark {
-                width: 40px; height: 40px; border-radius: 8px;
-                background: var(--gold); color: #0e1115;
-                display: flex; align-items: center; justify-content: center;
-                font-weight: 800; font-size: 18px; letter-spacing: -0.5px;
+                height: 54px; padding: 6px 12px; border-radius: 10px;
+                background: #fff; display: flex; align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
             }
+            .brand-mark img { height: 42px; width: auto; display: block; }
             .brand-name { font-size: 18px; font-weight: 800; letter-spacing: 0.02em; }
             .brand-sub { font-size: 12px; color: #b7bcc4; }
+            .nav { display: flex; gap: 6px; flex-wrap: wrap; }
+            .nav a {
+                color: #d7dbe1; text-decoration: none; font-size: 13px; font-weight: 600;
+                padding: 8px 13px; border-radius: 8px;
+            }
+            .nav a:hover, .nav a.active { background: rgba(245, 184, 0, 0.14); color: #fff; }
+            .nav a.active { box-shadow: inset 0 -2px 0 var(--gold); }
+            .nav .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); display: inline-block; }
             .main { max-width: 1000px; margin: 0 auto; padding: 32px 20px 64px; }
             .search-panel {
                 background: var(--card); border: 1px solid var(--line);
@@ -194,12 +203,17 @@
         <header class="topbar">
             <div class="topbar-inner">
                 <div class="brand">
-                    <div class="brand-mark">CoJ</div>
+                    <div class="brand-mark"><img src="{{ asset('images/coj-logo.png') }}" alt="City of Johannesburg logo"></div>
                     <div>
                         <div class="brand-name">COJ-MIP</div>
                         <div class="brand-sub">Municipal Intelligence</div>
                     </div>
                 </div>
+                <nav class="nav" aria-label="Primary">
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                    <a href="{{ route('intelligence.search') }}" class="active"><span class="dot" aria-hidden="true"></span>Intelligence Search</a>
+                    <a href="{{ route('selection.history') }}">Selection History</a>
+                </nav>
             </div>
         </header>
 

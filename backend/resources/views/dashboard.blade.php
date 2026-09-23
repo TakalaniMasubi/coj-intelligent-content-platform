@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>CoJ-MIP — Municipal Intelligence Dashboard</title>
+        <link rel="icon" type="image/jpeg" href="{{ asset('images/coj-initials.jpg') }}">
         <style>
             :root {
                 --ink: #101418;
@@ -45,11 +46,11 @@
             }
             .brand { display: flex; align-items: center; gap: 14px; }
             .brand-mark {
-                width: 44px; height: 44px; border-radius: 9px;
-                background: var(--gold); color: #0e1115;
-                display: flex; align-items: center; justify-content: center;
-                font-weight: 800; font-size: 20px; letter-spacing: -0.5px;
+                height: 58px; padding: 6px 12px; border-radius: 11px;
+                background: #fff; display: flex; align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
             }
+            .brand-mark img { height: 46px; width: auto; display: block; }
             .brand-name { font-size: 18px; font-weight: 800; letter-spacing: 0.02em; }
             .brand-sub { font-size: 12px; color: #b7bcc4; max-width: 460px; }
             .nav { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -257,7 +258,7 @@
         <header class="topbar">
             <div class="topbar-inner">
                 <div class="brand">
-                    <div class="brand-mark">CoJ</div>
+                    <div class="brand-mark"><img src="{{ asset('images/coj-logo.png') }}" alt="City of Johannesburg logo"></div>
                     <div>
                         <div class="brand-name">COJ-MIP</div>
                         <div class="brand-sub">COJ MUNICIPAL INTELLIGENCE PLATFORM · Evidence-aware municipal information discovery and decision support</div>
@@ -652,6 +653,9 @@
                             <div>
                                 <h2 class="section-title" id="about-title">About CoJ-MIP</h2>
                             </div>
+                        </div>
+                        <div style="text-align:center; margin-bottom:14px;">
+                            <img src="{{ asset('images/coj-initials.jpg') }}" alt="COJ initials logo" style="height:76px; width:76px; border-radius:14px; box-shadow:0 2px 12px rgba(16,20,24,0.12);">
                         </div>
                         <div class="t-sub" style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
                             <p style="margin: 0 0 8px;">CoJ-MIP is an evidence-aware municipal information discovery and decision-support application. It is <strong>not an official City of Johannesburg government system</strong>.</p>
