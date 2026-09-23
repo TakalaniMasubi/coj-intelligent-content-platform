@@ -32,7 +32,7 @@ Authorised Sources
 
 ## Implementation Status
 
-**Current phase: Phase 6 — CoJ municipal intelligence dashboard (implemented).**
+**Current phase: Phase 7 — Newsletter studio (implemented).**
 
 | Item | Status |
 |------|--------|
@@ -44,21 +44,25 @@ Authorised Sources
 | Domain model (Organisation, Article, Source, Repository, Verification) | IMPLEMENTED (Phase 2/3) |
 | Repository contracts + JSON drivers | IMPLEMENTED (Phase 2) |
 | Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2/3) |
-| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4/5/6, 132 tests) |
+| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4/5/6/7, 159 tests) |
 | CoJ dataset | IMPLEMENTED (Phase 3) |
 | Search + deterministic ranking | IMPLEMENTED (Phase 4) |
 | Intelligence search API + UI | IMPLEMENTED (Phase 4) |
 | Exactly-three selection + explanations | IMPLEMENTED (Phase 5) |
 | Selection decision history + repetition control | IMPLEMENTED (Phase 5) |
 | Dashboard (metrics, health, verification, provenance, preview, history) | IMPLEMENTED (Phase 6) |
-| Content discovery | PLANNED (Phase 7) |
-| Verification + provenance | PLANNED (Phase 8) |
-| Newsletter engine | PLANNED (Phase 9) |
-| Exact 3-page PDF | PLANNED (Phase 10) |
-| Full testing/security/observability | PLANNED (Phase 11) |
-| AI integration | PLANNED (Phase 12) |
-| Scheduler + automated sync | PLANNED (Phase 13) |
-| Deployment / production readiness | PLANNED (Phase 14) |
+| Newsletter composition engine (topic → 3 orgs + article matching) | IMPLEMENTED (Phase 7) |
+| Newsletter layouts (executive-brief, news-insights, spotlight, magazine) | IMPLEMENTED (Phase 7) |
+| Newsletter media service (logo/monogram, image/panel fallbacks) | IMPLEMENTED (Phase 7) |
+| Newsletter studio UI + live web preview | IMPLEMENTED (Phase 7) |
+| Exact 3-page PDF with density regeneration + validation | IMPLEMENTED (Phase 7) |
+| Newsletter generation history | IMPLEMENTED (Phase 7) |
+| Content discovery | PLANNED (Phase 8) |
+| Verification + provenance | PLANNED (Phase 9) |
+| Full testing/security/observability | PLANNED (Phase 10) |
+| AI integration | PLANNED (Phase 11) |
+| Scheduler + automated sync | PLANNED (Phase 12) |
+| Deployment / production readiness | PLANNED (Phase 13) |
 
 ## Technology Stack
 
@@ -69,7 +73,7 @@ Authorised Sources
 | Frontend | Blade + Tailwind CSS v4 (Vite) |
 | Data (initial) | JSON files under `storage/app/data/` |
 | Data (future) | Eloquent/MySQL behind the same repository contracts |
-| PDF (future) | Dompdf (Phase 10) |
+| PDF | Dompdf |
 | Tests | PHPUnit 11 |
 | AI (future) | Provider-agnostic (local deterministic provider first) |
 
@@ -150,14 +154,13 @@ each phase is validated and reported before the next begins.
 | 4 | Search + deterministic ranking (complete) |
 | 5 | Exactly-three selection + explainability (complete) |
 | 6 | Municipal intelligence dashboard (complete) |
-| 7 | Content discovery architecture |
-| 8 | Verification + provenance |
-| 9 | Newsletter engine |
-| 10 | Exact 3-page PDF |
-| 11 | Testing + security + observability |
-| 12 | AI integration |
-| 13 | Scheduler + automated sync |
-| 14 | Deployment + production readiness |
+| 7 | Newsletter studio — newsletter engine + exact 3-page PDF (complete) |
+| 8 | Content discovery architecture |
+| 9 | Verification + provenance |
+| 10 | Testing + security + observability |
+| 11 | AI integration |
+| 12 | Scheduler + automated sync |
+| 13 | Deployment + production readiness |
 
 ## Security Posture (Foundation)
 
@@ -181,10 +184,11 @@ coj-intelligent-content-platform/
 │   │   │   ├── Source/        SourceTrust, SourceTier
 │   │   │   ├── Shared/        VerificationStatus (verified/pending/unverified)
 │   │   │   ├── Intelligence/  SearchMatch, SearchResult, SearchResponse, SelectionDecision, SelectionOutcome
+│   │   │   ├── Newsletter/    NewsletterComposition, NewsletterOrganisation, NewsletterArticle, NewsletterMediaAsset, NewsletterLayout, NewsletterGenerationRecord
 │   │   │   └── Repository/    RepositoryHealth, RepositoryPolicy
-│   │   ├── Application/    use-case services (seeding, health, paths, intelligence, selection)
+│   │   ├── Application/    use-case services (seeding, health, paths, intelligence, selection, newsletter)
 │   │   ├── Contracts/      repository ports + intelligence/selection contracts
-│   │   ├── Infrastructure/ JSON persistence drivers (gateway + 4 repositories)
+│   │   ├── Infrastructure/ JSON persistence drivers (gateway + repositories, incl. newsletter history)
 │   │   └── Http/           API controllers + form requests
 │   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation

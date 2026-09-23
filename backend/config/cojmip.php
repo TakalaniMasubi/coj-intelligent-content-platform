@@ -15,9 +15,11 @@
 | PLANNED SECTIONS (populated in later phases):
 |   - source_tiers      -> verified mapping of SourceTier enum to rankings
 |   - ranking_weights   -> deterministic scoring weights (Phase 4)
-|   - freshness         -> freshness band thresholds (Phase 4/7)
-|   - layouts           -> newsletter layout registry (Phase 9)
+|   - freshness         -> freshness band thresholds (Phase 4)
 |   - feature_flags     -> runtime capability switches
+|
+| Phase 7 populates `layouts` (newsletter layout registry) and `newsletter`
+| (studio composition and PDF settings).
 |
 | No seeding weights or trust scores are invented here. The freshness policy
 | defaults are documented, configurable operational thresholds (Phase 2).
@@ -177,11 +179,87 @@ return [
     | Newsletter Layouts
     |--------------------------------------------------------------------------
     |
-    | PLANNED (Phase 9): newsletter layout registry. The platform will
-    | support multiple layouts independent of content and branding.
+    | Layout registry for the newsletter studio (Phase 7). Each layout
+    | describes how the SAME composed content is presented — selection and
+    | composition are fully independent of the display layout, so switching
+    | layouts never re-selects or recomposes organisation data.
+    |
+    |   name    dislpay name shown in the studio layout selector
+    |   tag     short descriptor used under the layout name
+    |   blurb   longer explanatory text (tooltips / accessibility)
+    |
+    | `default` marks the layout used when a new composition is created.
+    | Documents are always validated against the PDF page target (Phase 7).
     |
     */
-    'layouts' => [],
+    'layouts' => [
+        'default' => 'executive-brief',
+        'registry' => [
+            'executive-brief' => [
+                'name' => 'Executive Brief',
+                'tag' => 'Compact and to the point',
+                'blurb' => 'A lean executive summary: compact organisation cards, dense facts and an at-a-glance reference strip.',
+            ],
+            'news-insights' => [
+                'name' => 'News & Insights',
+                'tag' => 'Article-led municipal news',
+                'blurb' => 'An article-led briefing: curated repository articles front and centre for each organisation.',
+            ],
+            'municipal-spotlight' => [
+                'name' => 'Municipal Spotlight',
+                'tag' => 'Organisation profile spotlight',
+                'blurb' => 'A profile-driven spotlight on each organisation: mandate, verification, sourcing and rationale.',
+            ],
+            'magazine' => [
+                'name' => 'Magazine',
+                'tag' => 'Full editorial cover feature',
+                'blurb' => 'A magazine cover edition: a large masthead with editorial feature spreads for each organisation.',
+            ],
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Newsletter Studio
+    |--------------------------------------------------------------------------
+    |
+    | Newsletter composition and PDF settings (Phase 7). All editorial copy in
+    | a composed newsletter is derived ONLY from the curated repository —
+    | never AI-generated and never invented. The PDF is rendered with Dompdf
+    | and validated against an exact page target; if the rendered document
+    | does not match the target, generation density is tightened and the
+    | document is regenerated (up to `regenerate_attempts`).
+    |
+    */
+    'newsletter' => [
+        'brand' => [
+            'name' => 'City of Johannesburg',
+            'eyebrow' => 'City of Johannesburg — Municipal Insights',
+            'publication' => 'CoJ Municipal Intelligence Newsletter',
+            'tagline' => 'Top municipal organisations for your topic, grounded in the curated City repository.',
+            'logo' => 'images/coj-logo.png',
+            'seal' => 'images/coj-initials.jpg',
+        ],
+        'media' => [
+            'organisation_logos_dir' => 'images/organisations',
+            'article_images_dir' => 'images/articles',
+        ],
+        'composition' => [
+            'organisation_articles_limit' => 2,
+            'introduction_prefix' => 'Generated from the City\'s curated repository for the topic',
+        ],
+        'pdf' => [
+            'paper' => 'A4',
+            'orientation' => 'portrait',
+            'page_target' => 3,
+            'regenerate_attempts' => 4,
+            'filename_prefix' => 'coj-mip-newsletter',
+            'margins_mm' => 14,
+        ],
+        'footnote' => 'This newsletter is automatically generated from the curated CoJ repository. '
+            .'Every organisation and article shown is real repository data — no content is '
+            .'invented and no AI is used. Article links open the recorded source website.',
+    ],
 
     /*
     |--------------------------------------------------------------------------

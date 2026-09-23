@@ -27,7 +27,7 @@ Generation → Dashboard → Executive Newsletter → PDF → Audit Trail
 | Frontend | Blade, Tailwind CSS v4, Vite |
 | Data (initial) | JSON under `backend/storage/app/data/` |
 | Data (future) | Eloquent/MySQL behind repository contracts |
-| PDF (future) | Dompdf |
+| PDF | Dompdf |
 | Tests | PHPUnit 11 |
 
 ## Project Structure
@@ -43,6 +43,7 @@ coj-intelligent-content-platform/
 │   │   └── Http/           API controllers
 │   ├── config/cojmip.php   CoJ-MIP configuration (volume + freshness policies)
 │   ├── routes/api.php      versioned API foundation (/api/v1)
+│   ├── resources/views/    Blade views (dashboard, intelligence, newsletter studio)
 │   ├── database/seed-data/ curated CoJ dataset (entities/sources/articles)
 │   └── storage/app/data/   JSON repository volume (gitignored runtime data)
 ├── docs/
@@ -80,14 +81,13 @@ coj-intelligent-content-platform/
 | 4 | Search + deterministic ranking (complete) |
 | 5 | Exactly-three selection + explainability (complete) |
 | 6 | Municipal intelligence dashboard (complete) |
-| 7 | Content discovery architecture |
-| 8 | Verification + provenance |
-| 9 | Newsletter engine |
-| 10 | Exact 3-page PDF |
-| 11 | Testing + security + observability |
-| 12 | AI integration |
-| 13 | Scheduler + automated sync |
-| 14 | Deployment + production readiness |
+| 7 | Newsletter studio — newsletter engine + exact 3-page PDF (complete) |
+| 8 | Content discovery architecture |
+| 9 | Verification + provenance |
+| 10 | Testing + security + observability |
+| 11 | AI integration |
+| 12 | Scheduler + automated sync |
+| 13 | Deployment + production readiness |
 
 Features are only claimed as implemented when truly delivered; the
 architecture (`docs/architecture/README.md`) maintains an explicit
@@ -182,7 +182,7 @@ php artisan serve     # then open http://localhost:8000/intelligence
   capped at 25 — no history means no penalty, and an irrelevant organisation
   is never added just to avoid repetition (strong relevance wins).
 - Deterministic: same repository + query + history = same result, no
-  randomness. The PHPUnit suite now has 132 tests.
+  randomness. The PHPUnit suite now has 159 tests.
 
 ### Municipal intelligence dashboard
 
@@ -210,6 +210,42 @@ php artisan serve     # then open http://localhost:8000/dashboard
 - Pending records stay visibly distinct everywhere (badges + notes); the
   dashboard renders fully without any AI provider or API key.
 
+### Newsletter studio
+
+A professional studio that composes a municipal newsletter for any natural
+language topic and renders an **exact 3-page PDF**, entirely on the
+deterministic Phase 4/5 pipeline (no AI, no API keys):
+
+```bash
+cd backend
+php artisan serve     # then open http://localhost:8000/newsletter
+```
+
+- **Compose:** type any topic and the studio reuses the real selection
+  pipeline as a read-only preview (history never mutated) to pick exactly the
+  three most relevant organisations, then matches each to curated repository
+  articles deterministically (title/subject/summary relevance; new-item then
+  older-item preference). Fewer than three eligible results are reported
+  honestly as "Insufficient verified information available."
+- **One composition, four layouts:** `executive-brief`, `news-insights`,
+  `municipal-spotlight` and `magazine` share the same composed content; the
+  layout pills switch the live web preview and the PDF without re-selecting.
+- **Media honesty:** organisations resolve to a real logo when one exists,
+  otherwise to a clean monogram; articles resolve to a real image or an
+  honest neutral panel. Branding colours and margins are config in
+  `config/cojmip.php` → `newsletter`.
+- **Exact 3-page PDF:** Dompdf renders the same sheets and the result is
+  validated page-by-page (`pdf.page_target = 3`, `pdf.regenerate_attempts`);
+  over/under-filled layouts are regenerated at a more/less dense profile so
+  the delivered PDF is always exactly three pages. The last page carries the
+  generation stamp, edition id and footer.
+- **History:** downloading the PDF writes an auditable
+  `newsletter_generations` record (query, layout, edition, timestamps) into
+  the JSON volume; creating/styling never writes history.
+- The studio renders fully without AI; the only environment requirement for
+  real image embedding is the PHP GD extension (enabled in XAMPP's
+  `php.ini`).
+
 ## Testing
 
 ```bash
@@ -219,15 +255,17 @@ php artisan test
 
 ## Current Phase
 
-**Phase 6 — CoJ municipal intelligence dashboard.** On top of the Phase 5
-selection engine, a professional dashboard (`/dashboard`) is now the platform
-landing page. It aggregates the JSON repository into live metric cards,
-repository health, organisation type breakdown, verification overview and
-source provenance; previews the real top-three selection for a featured query
-**without persisting history**; shows recent selection decisions grouped by
-query with a full selection-history page; and provides an intelligence search
-entry point ("What municipal information are you looking for?") that drives the
-existing search and SELECT TOP 3 flow on `/intelligence`. All figures are
-computed dynamically — nothing is hard-coded — and the dashboard renders
-without any AI provider or API key. The PHPUnit suite now has 132 tests. See
+**Phase 7 — Newsletter studio.** On top of the Phase 4/5 selection engine and
+the Phase 6 dashboard, `/newsletter` is a professional studio that composes a
+municipal intelligence newsletter for any topic. It reuses the real selection
+pipeline read-only to pick three organisations, matches them to curated
+articles deterministically, and renders one composition across four layouts
+(`executive-brief`, `news-insights`, `municipal-spotlight`, `magazine`) for
+both the live web preview and Dompdf. PDF generation validates the page count
+and regenerates at a different density until the result is exactly three
+pages; downloading the PDF writes a `newsletter_generations` history record
+(query, layout, edition, timestamps) into the JSON volume. Organisations and
+articles use honest media (real logo/image when available, otherwise clean
+monogram/panel fallbacks), and the whole studio works with zero AI and no API
+keys. The PHPUnit suite now has 159 tests. See
 `docs/architecture/README.md` for the full implementation status register.

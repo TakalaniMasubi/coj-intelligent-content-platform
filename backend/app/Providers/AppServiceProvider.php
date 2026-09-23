@@ -6,15 +6,23 @@ use App\Application\Health\RepositoryHealthService;
 use App\Application\Intelligence\IntelligenceSearchService;
 use App\Application\Intelligence\IntelligenceSelectionService;
 use App\Application\Intelligence\OrganisationSelector;
+use App\Application\Intelligence\RelevanceScorer;
+use App\Application\Newsletter\NewsletterArticleMatcher;
+use App\Application\Newsletter\NewsletterAssetService;
+use App\Application\Newsletter\NewsletterComposer;
+use App\Application\Newsletter\NewsletterLayouts;
+use App\Application\Newsletter\NewsletterPdfService;
 use App\Application\Repository\RepositoryPaths;
 use App\Contracts\Intelligence\IntelligenceSearchContract;
 use App\Contracts\Intelligence\SelectionContract;
 use App\Contracts\Repositories\ArticleRepositoryContract;
+use App\Contracts\Repositories\NewsletterHistoryRepositoryContract;
 use App\Contracts\Repositories\OrganisationRepositoryContract;
 use App\Contracts\Repositories\RepositoryHealthContract;
 use App\Contracts\Repositories\SelectionDecisionRepositoryContract;
 use App\Contracts\Repositories\SourceTrustRepositoryContract;
 use App\Infrastructure\Persistence\Json\JsonArticleRepository;
+use App\Infrastructure\Persistence\Json\JsonNewsletterHistoryRepository;
 use App\Infrastructure\Persistence\Json\JsonOrganisationRepository;
 use App\Infrastructure\Persistence\Json\JsonSelectionDecisionRepository;
 use App\Infrastructure\Persistence\Json\JsonSourceTrustRepository;
@@ -45,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
      */
     private function registerCoJMipBindings(): void
     {
-        $this->app->singleton(RepositoryPaths::class, fn () => new RepositoryPaths());
+        $this->app->singleton(RepositoryPaths::class, fn () => new RepositoryPaths);
 
         $this->app->bind(
             RepositoryJsonGateway::class,
@@ -72,10 +80,53 @@ class AppServiceProvider extends ServiceProvider
             ),
         );
         $this->app->bind(SelectionContract::class, IntelligenceSelectionService::class);
-        $this->app->bind(\App\Application\Intelligence\RelevanceScorer::class, fn () => new \App\Application\Intelligence\RelevanceScorer(
-            config('cojmip.ranking_weights.fields', []),
-            config('cojmip.ranking_weights.verification', []),
-            (int) config('cojmip.ranking_weights.cap', 100),
-        ));
+        $this->app->bind(
+            RelevanceScorer::class,
+            fn () => new RelevanceScorer(
+                config('cojmip.ranking_weights.fields', []),
+                config('cojmip.ranking_weights.verification', []),
+                (int) config('cojmip.ranking_weights.cap', 100),
+            ),
+        );
+
+        $this->registerNewsletterBindings();
+    }
+
+    /**
+     * Newsletter studio bindings (Phase 7). The composer reuses the existing
+     * selection pipeline for top-three selection; layouts, assets, PDF
+     * rendering and the newsletter generation history are wired here so the
+     * presentation layer never constructs them directly.
+     */
+    private function registerNewsletterBindings(): void
+    {
+        $this->app->bind(NewsletterLayouts::class, fn () => new NewsletterLayouts(config('cojmip.layouts', [])));
+        $this->app->bind(
+            NewsletterArticleMatcher::class,
+            fn () => new NewsletterArticleMatcher(app(ArticleRepositoryContract::class)),
+        );
+        $this->app->singleton(
+            NewsletterAssetService::class,
+            fn () => new NewsletterAssetService(config('cojmip.newsletter', [])),
+        );
+        $this->app->bind(
+            NewsletterComposer::class,
+            fn () => new NewsletterComposer(
+                app(IntelligenceSelectionService::class),
+                app(OrganisationRepositoryContract::class),
+                app(NewsletterArticleMatcher::class),
+                app(NewsletterAssetService::class),
+                config('cojmip.newsletter', []),
+                (int) config('cojmip.selection.required', 3),
+            ),
+        );
+        $this->app->bind(
+            NewsletterPdfService::class,
+            fn () => new NewsletterPdfService(
+                app(NewsletterAssetService::class),
+                config('cojmip.newsletter', []),
+            ),
+        );
+        $this->app->bind(NewsletterHistoryRepositoryContract::class, JsonNewsletterHistoryRepository::class);
     }
 }
