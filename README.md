@@ -78,10 +78,10 @@ coj-intelligent-content-platform/
 | 2 | Domain model + repository contracts + JSON drivers (complete) |
 | 3 | CoJ dataset (complete) |
 | 4 | Search + deterministic ranking (complete) |
-| 5 | Exactly-three selection + explainability (implemented) |
-| 6 | Content discovery architecture |
-| 7 | Verification + provenance |
-| 8 | Professional dashboard |
+| 5 | Exactly-three selection + explainability (complete) |
+| 6 | Municipal intelligence dashboard (complete) |
+| 7 | Content discovery architecture |
+| 8 | Verification + provenance |
 | 9 | Newsletter engine |
 | 10 | Exact 3-page PDF |
 | 11 | Testing + security + observability |
@@ -182,7 +182,33 @@ php artisan serve     # then open http://localhost:8000/intelligence
   capped at 25 — no history means no penalty, and an irrelevant organisation
   is never added just to avoid repetition (strong relevance wins).
 - Deterministic: same repository + query + history = same result, no
-  randomness. The PHPUnit suite now has 118 tests.
+  randomness. The PHPUnit suite now has 132 tests.
+
+### Municipal intelligence dashboard
+
+A professional presentation layer over the existing search, selection and
+repository services — no hard-coded figures, everything is computed live:
+
+```bash
+cd backend
+php artisan serve     # then open http://localhost:8000/dashboard
+```
+
+- **Landing page:** `/` redirects to `/dashboard` — metric cards (organisations,
+  entities, directorates, offices, verified/pending, articles, trusted
+  sources), repository health, organisation type breakdown, verification
+  overview, source provenance and latest repository content.
+- **Top-3 explainability preview:** the dashboard runs the real selection
+  pipeline for the featured query **without persisting history** (read-only
+  preview reusing the exact Phase 5 scoring, repetition adjustment and
+  reasons).
+- **Recent Selection Decisions:** last selections grouped by query, linking to
+  `/selection-history` (full auditable history with empty state).
+- **Intelligence search entry:** "What municipal information are you looking
+  for?" with example query chips, SEARCH and SELECT TOP 3 actions on
+  `/intelligence`.
+- Pending records stay visibly distinct everywhere (badges + notes); the
+  dashboard renders fully without any AI provider or API key.
 
 ## Testing
 
@@ -193,18 +219,15 @@ php artisan test
 
 ## Current Phase
 
-**Phase 5 — Explainable top-three municipal organisation selection.** On top
-of the Phase 4 search engine, a dedicated `OrganisationSelector` policy now
-recommends exactly three organisations: candidates must reach a relevance
-floor, the top three are chosen deterministically in ranking order, and the
-verification status of every selection is preserved and exposed. Every
-successful selection is persisted to a decision history used for repetition
-control (configurable 4-point penalty per prior selection in a 30-day window,
-capped at 25; no history means no penalty; strong relevance always beats
-repetition). The selection is exposed as `POST /api/v1/intelligence/select`
-and a "Select Top 3" action on the `/intelligence` screen that shows the
-TOP 3 with original + adjusted scores, verification badges, repetition
-adjustment and "why selected" reasons. When fewer than three candidates are
-eligible the API reports an explicit `insufficient_results` state instead of
-padding the list. The PHPUnit suite now has 118 tests. See
+**Phase 6 — CoJ municipal intelligence dashboard.** On top of the Phase 5
+selection engine, a professional dashboard (`/dashboard`) is now the platform
+landing page. It aggregates the JSON repository into live metric cards,
+repository health, organisation type breakdown, verification overview and
+source provenance; previews the real top-three selection for a featured query
+**without persisting history**; shows recent selection decisions grouped by
+query with a full selection-history page; and provides an intelligence search
+entry point ("What municipal information are you looking for?") that drives the
+existing search and SELECT TOP 3 flow on `/intelligence`. All figures are
+computed dynamically — nothing is hard-coded — and the dashboard renders
+without any AI provider or API key. The PHPUnit suite now has 132 tests. See
 `docs/architecture/README.md` for the full implementation status register.

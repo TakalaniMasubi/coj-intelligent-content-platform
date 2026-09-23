@@ -39,4 +39,19 @@ final readonly class IntelligenceSelectionService implements SelectionContract
 
         return $outcome;
     }
+
+    /**
+     * Runs the exact same selection pipeline as select() but WITHOUT
+     * persisting the outcome to history. Used by read-only consumers such as
+     * the dashboard explainability preview, which must never write to the
+     * selection history just by rendering a page.
+     */
+    public function preview(string $query, ?DateTimeImmutable $asOf = null): SelectionOutcome
+    {
+        return $this->selector->select(
+            $query,
+            $this->search->search($query)->results,
+            $asOf,
+        );
+    }
 }

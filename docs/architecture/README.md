@@ -32,7 +32,7 @@ Authorised Sources
 
 ## Implementation Status
 
-**Current phase: Phase 5 — Explainable top-three municipal organisation selection (implemented).**
+**Current phase: Phase 6 — CoJ municipal intelligence dashboard (implemented).**
 
 | Item | Status |
 |------|--------|
@@ -44,15 +44,15 @@ Authorised Sources
 | Domain model (Organisation, Article, Source, Repository, Verification) | IMPLEMENTED (Phase 2/3) |
 | Repository contracts + JSON drivers | IMPLEMENTED (Phase 2) |
 | Repository health aggregation + artisan commands | IMPLEMENTED (Phase 2/3) |
-| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4/5, 118 tests) |
+| PHPUnit regression suite | IMPLEMENTED (Phase 2/3/4/5/6, 132 tests) |
 | CoJ dataset | IMPLEMENTED (Phase 3) |
 | Search + deterministic ranking | IMPLEMENTED (Phase 4) |
 | Intelligence search API + UI | IMPLEMENTED (Phase 4) |
 | Exactly-three selection + explanations | IMPLEMENTED (Phase 5) |
 | Selection decision history + repetition control | IMPLEMENTED (Phase 5) |
-| Content discovery | PLANNED (Phase 6) |
-| Verification + provenance | PLANNED (Phase 7) |
-| Dashboard | PLANNED (Phase 8) |
+| Dashboard (metrics, health, verification, provenance, preview, history) | IMPLEMENTED (Phase 6) |
+| Content discovery | PLANNED (Phase 7) |
+| Verification + provenance | PLANNED (Phase 8) |
 | Newsletter engine | PLANNED (Phase 9) |
 | Exact 3-page PDF | PLANNED (Phase 10) |
 | Full testing/security/observability | PLANNED (Phase 11) |
@@ -148,10 +148,10 @@ each phase is validated and reported before the next begins.
 | 2 | Domain model + repository contracts + JSON drivers (complete) |
 | 3 | CoJ dataset (complete) |
 | 4 | Search + deterministic ranking (complete) |
-| 5 | Exactly-three selection + explainability (implemented) |
-| 6 | Content discovery architecture |
-| 7 | Verification + provenance |
-| 8 | Professional dashboard |
+| 5 | Exactly-three selection + explainability (complete) |
+| 6 | Municipal intelligence dashboard (complete) |
+| 7 | Content discovery architecture |
+| 8 | Verification + provenance |
 | 9 | Newsletter engine |
 | 10 | Exact 3-page PDF |
 | 11 | Testing + security + observability |

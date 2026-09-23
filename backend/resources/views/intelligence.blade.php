@@ -468,6 +468,24 @@
                     return node;
                 }
 
+                // When launched from the dashboard ("?q=..." and optionally
+                // "select=1") this page performs the existing search — and the
+                // existing top-three selection — automatically, reusing the
+                // same workflow as typing and clicking on this page.
+                (function boot() {
+                    const params = new URLSearchParams(window.location.search);
+                    const q = (params.get('q') || '').trim();
+
+                    if (!q) { return; }
+
+                    input.value = q;
+                    search().then(function () {
+                        if (params.get('select') === '1') {
+                            selectTop3();
+                        }
+                    });
+                })();
+
                 function renderSelection(data) {
                     statusText.textContent = data.original_query + ' — top three selected.';
 
