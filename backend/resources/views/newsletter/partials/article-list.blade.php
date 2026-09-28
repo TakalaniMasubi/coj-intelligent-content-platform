@@ -1,40 +1,75 @@
+@php($heroTop = $heroTop ?? false)
+@php($heroSize = $heroSize ?? 620)
 @if (count($organisation->articles) === 0)
     <div class="ns-noarticle">
-        No relevant published article is currently available in the curated repository for this organisation.
+        No relevant published article is currently available for this organisation.
     </div>
 @else
-    <table class="ns-articles" cellpadding="0" cellspacing="0" role="presentation">
-        @foreach ($organisation->articles as $article)
-            <tr class="ns-article">
-                <td>
-                    <p class="ns-article-title">{{ $article->title }}</p>
-                    <p class="ns-article-src">
-                        {{ $article->sourceName }}
-                        @if ($article->status === 'verified')
-                            <span class="ns-chip ns-chip-green">Verified</span>
-                        @else
-                            <span class="ns-chip ns-chip-amber">Unverified</span>
+    @php($primary = $organisation->articles[0])
+    @php($secondary = $organisation->articles[1] ?? null)
+    <div class="ns-article">
+        @if ($heroTop)
+            <div class="ns-art-hero">
+                @include('newsletter.partials.media-asset', [
+                    'asset' => $primary->image,
+                    'context' => $context,
+                    'size' => $heroSize,
+                    'variant' => 'hero',
+                ])
+            </div>
+            <p class="ns-art-kicker">
+                {{ $primary->subject !== '' ? ucfirst($primary->subject) : 'Municipal article' }}
+                &nbsp;&middot;&nbsp; Featured article
+            </p>
+            <h3 class="ns-article-title">{{ $primary->title }}</h3>
+            <p class="ns-article-src">
+                {{ $primary->sourceName }}
+                &nbsp;|&nbsp; Source date {{ $primary->retrievedAt?->format('F j, Y') ?? 'not recorded' }}
+            </p>
+            @if ($primary->summary)
+                <p class="ns-article-sum">{{ $primary->summary }}</p>
+            @endif
+        @else
+            <table class="ns-art-row" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                    <td class="ns-art-body">
+                        <p class="ns-art-kicker">
+                            {{ $primary->subject !== '' ? ucfirst($primary->subject) : 'Municipal article' }}
+                            &nbsp;&middot;&nbsp; Featured article
+                        </p>
+                        <h3 class="ns-article-title">{{ $primary->title }}</h3>
+                        <p class="ns-article-src">
+                            {{ $primary->sourceName }}
+                            &nbsp;|&nbsp; Source date {{ $primary->retrievedAt?->format('F j, Y') ?? 'not recorded' }}
+                        </p>
+                        @if ($primary->summary)
+                            <p class="ns-article-sum">{{ $primary->summary }}</p>
                         @endif
-                        @if ($article->retrievedAt)
-                            {{ $article->retrievedAt->format('d M Y') }}
-                        @endif
-                    </p>
-                    @if ($article->summary)
-                        <p class="ns-article-sum">{{ $article->summary }}</p>
-                    @endif
-                    @if ($article->sourceUrl)
-                        <span class="ns-article-link">Source: {{ $article->sourceUrl }}</span>
-                    @endif
-                </td>
-                <td class="ns-article-photo">
-                    @include('newsletter.partials.media-asset', [
-                        'asset' => $article->image,
-                        'context' => $context,
-                        'size' => 0,
-                        'variant' => 'sm',
-                    ])
-                </td>
-            </tr>
-        @endforeach
-    </table>
+                    </td>
+                    <td class="ns-art-photo">
+                        @include('newsletter.partials.media-asset', [
+                            'asset' => $primary->image,
+                            'context' => $context,
+                            'size' => 340,
+                            'variant' => 'hero',
+                        ])
+                    </td>
+                </tr>
+            </table>
+        @endif
+
+        @if ($secondary)
+            <div class="ns-art-secondary">
+                <span class="ns-art-second-label">Also in this edition</span>
+                <span class="ns-art-second-title">{{ $secondary->title }}</span>
+                <span class="ns-art-second-src">
+                    {{ $secondary->sourceName }} &middot; Source date {{ $secondary->retrievedAt?->format('F j, Y') ?? 'not recorded' }}
+                </span>
+            </div>
+        @endif
+
+        @if ($primary->sourceUrl !== '')
+            <p class="ns-article-link">Source: {{ $primary->sourceUrl }}</p>
+        @endif
+    </div>
 @endif

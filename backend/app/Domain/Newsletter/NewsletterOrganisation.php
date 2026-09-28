@@ -31,6 +31,7 @@ final readonly class NewsletterOrganisation
         public array $matchingTerms,
         public NewsletterMediaAsset $logo,
         public array $articles,
+        public ?string $mandate = null,
     ) {}
 
     public function logoSource(): string
@@ -49,6 +50,7 @@ final readonly class NewsletterOrganisation
             'verification' => $this->verification,
             'abbreviation' => $this->abbreviation,
             'description' => $this->description,
+            'mandate' => $this->mandate,
             'official_website' => $this->officialWebsite,
             'reasons' => array_values($this->reasons),
             'matching_terms' => array_values($this->matchingTerms),
@@ -71,6 +73,7 @@ final readonly class NewsletterOrganisation
             verification: (string) ($data['verification'] ?? 'pending'),
             abbreviation: (string) ($data['abbreviation'] ?? ''),
             description: isset($data['description']) && is_string($data['description']) ? $data['description'] : null,
+            mandate: isset($data['mandate']) && is_string($data['mandate']) ? $data['mandate'] : null,
             officialWebsite: isset($data['official_website']) && is_string($data['official_website'])
                 ? $data['official_website']
                 : null,

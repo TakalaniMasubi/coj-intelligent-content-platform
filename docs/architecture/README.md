@@ -52,6 +52,7 @@ Authorised Sources
 | Selection decision history + repetition control | IMPLEMENTED (Phase 5) |
 | Dashboard (metrics, health, verification, provenance, preview, history) | IMPLEMENTED (Phase 6) |
 | Newsletter composition engine (topic → 3 orgs + article matching) | IMPLEMENTED (Phase 7) |
+| Newsletter pages (masthead + one organisation per page, folios, footers) | IMPLEMENTED (Phase 7) |
 | Newsletter layouts (executive-brief, news-insights, spotlight, magazine) | IMPLEMENTED (Phase 7) |
 | Newsletter media service (logo/monogram, image/panel fallbacks) | IMPLEMENTED (Phase 7) |
 | Newsletter studio UI + live web preview | IMPLEMENTED (Phase 7) |

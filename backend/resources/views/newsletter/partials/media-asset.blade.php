@@ -4,19 +4,29 @@
     if ($assetW > 0 && $asset->aspectRatio() > 0) {
         $assetH = (int) round($assetW / $asset->aspectRatio());
     }
-    $variant = $variant ?? 'panel';
+    $assetVariant = $variant ?? 'panel';
 @endphp
 @if ($asset->isImage() && $asset->path($context) !== '')
     <img
         src="{{ $asset->path($context) }}"
         width="{{ $assetW }}"
-        height="{{ $assetH }}"
+        @if ($assetH > 0)
+            height="{{ $assetH }}"
+        @endif
         alt="{{ $asset->label }}"
-        {{ $context === 'web' ? 'style="object-fit:contain;max-width:100%;"' : '' }}
-        class="{{ $context === 'web' ? 'ns-logo-img' : 'ns-seal-img' }}"
+        class="{{ $assetVariant === 'hero' ? 'ns-img-hero' : ($context === 'web' ? 'ns-logo-img' : 'ns-seal-img') }}"
+        @if ($context === 'web')
+            style="object-fit:contain;max-width:100%;"
+        @endif
     >
 @elseif ($asset->source === 'monogram')
-    <span class="ns-monogram" style="background:{{ $asset->fill }};" role="img" aria-label="{{ $asset->label }}">{{ $asset->initials }}</span>
+    <span class="{{ $assetVariant === 'hero' ? 'ns-monogram-hero' : 'ns-monogram' }}"
+          style="background:{{ $asset->fill }};" role="img" aria-label="{{ $asset->label }}">
+        {{ $asset->initials }}
+    </span>
 @else
-    <span class="{{ $variant === 'sm' ? 'ns-panel-sm' : 'ns-panel' }}" style="background:{{ $asset->fill }};" role="img" aria-label="{{ $asset->label }}">{{ $asset->label }}</span>
+    <span class="{{ $assetVariant === 'sm' ? 'ns-panel-sm' : ($assetVariant === 'hero' ? 'ns-panel-hero' : 'ns-panel') }}"
+          style="background:{{ $asset->fill }};" role="img" aria-label="{{ $asset->label }}">
+        {{ $asset->label }}
+    </span>
 @endif

@@ -135,6 +135,7 @@ final readonly class NewsletterComposer
             verification: $organisation->verificationStatus->value,
             abbreviation: (string) ($organisation->abbreviation ?? ''),
             description: $organisation->description,
+            mandate: $organisation->mandate,
             officialWebsite: $organisation->officialWebsite,
             reasons: array_values($decision->reasons),
             matchingTerms: array_values($decision->matchingTerms),

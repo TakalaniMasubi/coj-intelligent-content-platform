@@ -37,7 +37,7 @@
 
             .topbar { background: #0e1115; color: #fff; border-bottom: 4px solid var(--gold); }
             .topbar-inner {
-                max-width: 1200px; margin: 0 auto; padding: 16px 24px;
+                max-width: 1200px; margin: 0 auto; padding: 14px 24px;
                 display: flex; align-items: center; justify-content: space-between;
                 gap: 18px; flex-wrap: wrap;
             }
@@ -48,8 +48,8 @@
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
             }
             .brand-mark img { height: 46px; width: auto; display: block; }
-            .brand-name { font-size: 18px; font-weight: 800; letter-spacing: 0.02em; }
-            .brand-sub { font-size: 12px; color: #b7bcc4; max-width: 420px; }
+            .brand-name { font-size: 17px; font-weight: 800; letter-spacing: 0.04em; }
+            .brand-sub { font-size: 12px; color: #b7bcc4; max-width: 460px; }
             .nav { display: flex; gap: 6px; flex-wrap: wrap; }
             .nav a {
                 display: inline-flex; align-items: center; gap: 7px;
@@ -91,6 +91,7 @@
             .btn:hover { filter: brightness(1.06); }
             .btn-gold { background: var(--gold); color: #3a2e00; }
             .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+            .btn-big { font-size: 16px; padding: 15px 26px; border-radius: 12px; box-shadow: 0 6px 18px rgba(199, 149, 0, 0.35); }
 
             .examples { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; font-size: 12.5px; color: var(--ink-faint); }
             .examples a {
@@ -117,38 +118,36 @@
             .layoutbar .lp.active:hover { border-color: #0f5c3a; }
             .layoutbar .note { font-size: 12.5px; color: var(--ink-faint); max-width: 300px; }
 
-            .orgcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 4px; }
-            @media (max-width: 900px) { .orgcards { grid-template-columns: 1fr; } }
-            .orgcard { border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px; background: #fff; }
-            .orgcard .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-            .orgcard .rank { font-size: 22px; font-weight: 800; color: var(--gold-deep); }
-            .orgcard h3 { margin: 0; font-size: 15.5px; line-height: 1.25; }
-            .orgcard .meta { font-size: 12px; color: var(--ink-soft); margin-top: 3px; }
-            .orgcard .chip {
-                display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: 0.05em;
-                border-radius: 6px; padding: 3px 8px; text-transform: uppercase; color: #fff; margin-right: 4px;
+            /* Step 2 — your selected organisations (publication strip) */
+            .nsel-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 4px; }
+            @media (max-width: 900px) { .nsel-strip { grid-template-columns: 1fr; } }
+            .nsel-org {
+                border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+                background: #fff; display: flex; flex-direction: column;
             }
-            .chip.g { background: var(--ok); }
-            .chip.a { background: var(--warn); }
-            .chip.x { background: #6f7378; }
-            .chip.gold { background: var(--gold); color: #3a2e00; }
-            .orgcard .desc { font-size: 13px; color: var(--ink-soft); line-height: 1.55; margin: 8px 0; }
-            .orgcard .why { border-left: 3px solid #0f5c3a; background: #f3f6f2; border-radius: 0 8px 8px 0; padding: 9px 12px; font-size: 12px; color: #33403a; margin: 8px 0; }
-            .orgcard .why b { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
-            .orgcard .why ul { margin: 4px 0 0; padding-left: 16px; }
-            .orgcard .arts { margin-top: 10px; }
-            .orgcard .art { border-top: 1px dashed var(--line); padding: 9px 0; }
-            .orgcard .art .t { font-weight: 700; font-size: 13px; }
-            .orgcard .art .s { font-size: 11.5px; color: var(--ink-faint); margin-top: 2px; }
-            .orgcard .art .sum { font-size: 12.5px; color: var(--ink-soft); margin-top: 3px; }
-            .avl { display: flex; align-items: center; gap: 10px; }
-            .avl .ava {
-                width: 34px; height: 34px; border-radius: 50%; color: #fff; font-weight: 700; font-size: 13px;
-                display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+            .nsel-org-head {
+                border-left: 5px solid var(--gold-deep); background: #fffdf4;
+                padding: 14px 14px 11px; display: flex; gap: 12px; align-items: center;
             }
+            .nsel-rank { font-size: 24px; font-weight: 800; color: var(--gold-deep); line-height: 1; }
+            .nsel-logo { flex: 0 0 auto; }
+            .nsel-org-title h3 { margin: 0; font-size: 15.5px; line-height: 1.25; }
+            .nsel-org-title p { margin: 3px 0 0; font-size: 11.5px; color: var(--ink-soft); }
+            .nsel-mandate, .nsel-desc {
+                margin: 12px 14px 0; font-size: 12.5px; color: var(--ink-soft); line-height: 1.55;
+            }
+            .nsel-mandate { font-style: italic; }
+            .nsel-art {
+                margin: auto 14px 0; padding: 12px 0 14px; border-top: 1px dashed var(--line);
+            }
+            .nsel-art-label { font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); display: block; margin-bottom: 3px; }
+            .nsel-art-title { font-size: 12.5px; font-weight: 600; line-height: 1.45; }
+            .nsel-art-none .nsel-art-title { font-style: italic; color: var(--ink-faint); font-weight: 500; }
+
+            .exportbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
             .preview { margin-top: 22px; }
-            .preview .shell { background: #cbd0d8; border: 1px solid var(--line); border-radius: 14px; padding: 26px 14px; overflow: auto; }
+            .preview .shell { background: #c2c8d1; border: 1px solid var(--line); border-radius: 14px; padding: 26px 6px; overflow: auto; }
             .preview .zoom { zoom: 0.78; }
             .nlsheet-wrap { width: 986px; margin: 0 auto; background: #fff; box-shadow: 0 18px 44px rgba(16, 20, 24, 0.22); }
 
@@ -164,8 +163,8 @@
                 <div class="brand">
                     <div class="brand-mark"><img src="{{ asset('images/coj-logo.png') }}" alt="City of Johannesburg"></div>
                     <div>
-                        <div class="brand-name">CoJ-MIP</div>
-                        <div class="brand-sub">Newsletter Studio — City of Johannesburg Intelligence Platform</div>
+                        <div class="brand-name">CoJ Municipal Intelligence</div>
+                        <div class="brand-sub">Newsletter Studio — compose a real, fact-checked municipal newsletter from the curated City repository</div>
                     </div>
                 </div>
                 <nav class="nav">
@@ -179,27 +178,28 @@
 
         <main class="main">
             <div class="stepbar">
-                <div class="step"><div class="no">Step 1</div><div class="tt">Choose a topic</div><div class="ds">Pick the topic your newsletter should spotlight.</div></div>
-                <div class="step"><div class="no">Step 2</div><div class="tt">Top-3 organisations</div><div class="ds">Reuses the platform's standard relevance pipeline.</div></div>
-                <div class="step"><div class="no">Step 3</div><div class="tt">Layout &amp; PDF</div><div class="ds">Switch layouts — no re-selection — then generate a 3-page PDF.</div></div>
+                <div class="step"><div class="no">Step 1</div><div class="tt">Choose your topic</div><div class="ds">Type a topic and compose the edition.</div></div>
+                <div class="step"><div class="no">Step 2</div><div class="tt">Your selected organisations</div><div class="ds">Exactly three organisations are picked by the standard relevance pipeline.</div></div>
+                <div class="step"><div class="no">Step 3</div><div class="tt">Choose your newsletter layout</div><div class="ds">Four editorial layouts — switching never re-selects organisations.</div></div>
+                <div class="step"><div class="no">Step 4</div><div class="tt">Newsletter preview &amp; PDF</div><div class="ds">Preview all three pages, then generate a 3-page PDF.</div></div>
             </div>
 
             @if ($composition === null)
                 <div class="panel">
-                    <h2><span class="k">Step 1</span>Compose a newsletter</h2>
+                    <h2><span class="k">Step 1</span>Choose your topic</h2>
                     <form method="POST" action="{{ route('newsletter.compose') }}" class="topic-form">
                         @csrf
                         <input type="text" name="topic" placeholder="e.g. waste management" value="{{ old('topic') }}" maxlength="120" required>
-                        <button type="submit" class="btn">Compose Newsletter</button>
+                        <button type="submit" class="btn">Generate Newsletter</button>
                     </form>
                     @error('topic')
                         <p style="color:var(--bad);font-size:13px;margin:10px 0 0;">{{ $message }}</p>
                     @enderror
                     <div class="examples">
-                        Try: <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();parentNode.parentNode.querySelector('input[name=topic]').value='waste management';">waste management</a>
-                        <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();parentNode.parentNode.querySelector('input[name=topic]').value='water services';">water services</a>
-                        <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();parentNode.parentNode.querySelector('input[name=topic]').value='economic development';">economic development</a>
-                        <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();parentNode.parentNode.querySelector('input[name=topic]').value='public safety';">public safety</a>
+                        Try: <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();this.parentNode.parentNode.querySelector('input[name=topic]').value='waste management';">waste management</a>
+                        <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();this.parentNode.parentNode.querySelector('input[name=topic]').value='water services';">water services</a>
+                        <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();this.parentNode.parentNode.querySelector('input[name=topic]').value='economic development';">economic development</a>
+                        <a href="{{ route('newsletter.studio') }}" onclick="event.preventDefault();this.parentNode.parentNode.querySelector('input[name=topic]').value='public safety';">public safety</a>
                     </div>
                     <p style="font-size:12.5px;color:var(--ink-faint);margin:16px 0 0;">
                         Composition is fully deterministic and grounded in the curated CoJ repository.
@@ -209,8 +209,9 @@
             @else
                 @if ($composition->isSuccess())
                     <div class="notice ok">
-                        <span class="tag">Step 2 — Done</span>
-                        <p style="margin:0;">{{ $composition->message }} Switching layouts below re-renders the same
+                        <span class="tag">Ready</span>
+                        <p style="margin:0;">Composed for the topic &ldquo;{{ $composition->topic }}&rdquo; &mdash;
+                            {{ $composition->message }} Switching layouts below re-renders the same
                             composed content — it never re-selects organisations.</p>
                     </div>
                 @else
@@ -231,90 +232,45 @@
                     </div>
                 @endif
 
-                <div class="panel" style="padding-bottom:18px;">
-                    <h2><span class="k">Step 3</span>Layout &amp; export</h2>
-                    <div class="layoutbar">
-                        @foreach ($layouts as $code => $layout)
-                            <a class="lp{{ $code === $layoutCode ? ' active' : '' }}"
-                               href="{{ route('newsletter.layout', $code) }}"
-                               title="{{ $layout['blurb'] }}">
-                                {{ $layout['name'] }}
-                                <small>{{ $layout['tag'] }}</small>
-                            </a>
-                        @endforeach
-                        <a class="btn btn-gold" href="{{ route('newsletter.pdf') }}">Download PDF (3 pages)</a>
-                        <a class="btn btn-ghost" href="{{ route('newsletter.studio') }}">Create another</a>
-                        <span class="note">Layout: {{ $currentLayout['name'] ?? '' }} — {{ $currentLayout['blurb'] ?? '' }}</span>
+                @if (! $composition->isSuccess())
+                    <div class="panel">
+                        <h2><span class="k">Step 1</span>Choose your topic</h2>
+                        <form method="POST" action="{{ route('newsletter.compose') }}" class="topic-form">
+                            @csrf
+                            <input type="text" name="topic" placeholder="e.g. waste management" value="{{ $composition->topic }}" maxlength="120" required>
+                            <button type="submit" class="btn">Generate Newsletter</button>
+                        </form>
+                        <p style="font-size:12.5px;color:var(--ink-faint);margin:14px 0 0;">
+                            The current topic produced no reliable matches in the curated repository.
+                            Try a different topic — the newsletter never invents organisations or articles.
+                        </p>
                     </div>
-                </div>
+                @else
+                    <div class="panel">
+                        <h2><span class="k">Step 2</span>Your selected organisations</h2>
+                        @include('newsletter.partials.organisation-overview', [
+                            'organisations' => $composition->organisations(),
+                        ])
+                    </div>
 
-                <div class="panel">
-                    <h2><span class="k">Step 2</span>Organisations &amp; articles</h2>
-                    <div class="orgcards">
-                        @foreach ($composition->organisations() as $organisation)
-                            <div class="orgcard">
-                                <div class="top">
-                                    <div class="rank">{{ str_pad((string) $organisation->rank, 2, '0', STR_PAD_LEFT) }}</div>
-                                    @include('newsletter.partials.media-asset', [
-                                        'asset' => $organisation->logo,
-                                        'context' => 'web',
-                                        'size' => 36,
-                                    ])
-                                    <div>
-                                        <h3>{{ $organisation->name }}</h3>
-                                        <div class="meta">
-                                            <span class="chip {{ $organisation->verification === 'verified' ? 'g' : ($organisation->verification === 'unverified' ? 'x' : 'a') }}">
-                                                {{ $organisation->verification === 'verified' ? 'Verified' : ($organisation->verification === 'unverified' ? 'Unverified' : 'Pending') }}
-                                            </span>
-                                            <span class="chip gold">Score {{ $organisation->score }}</span>
-                                            {{ ucfirst($organisation->type) }}
-                                        </div>
-                                    </div>
-                                </div>
-                                @if ($organisation->description)
-                                    <div class="desc">{{ $organisation->description }}</div>
-                                @endif
-                                @if ($organisation->reasons !== [])
-                                    <div class="why"><b>Why selected</b>
-                                        <ul>
-                                            @foreach ($organisation->reasons as $reason)
-                                                <li>{{ $reason }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                <div class="arts">
-                                    @if (count($organisation->articles) === 0)
-                                        <div style="font-style:italic;color:var(--ink-faint);font-size:12.5px;">
-                                            No relevant published article is currently available in the curated repository for this organisation.
-                                        </div>
-                                    @else
-                                        @foreach ($organisation->articles as $article)
-                                            <div class="art">
-                                                <div class="t">{{ $article->title }}</div>
-                                                <div class="s">
-                                                    {{ $article->sourceName }}
-                                                    @if ($article->status === 'verified')
-                                                        <span class="chip g">Verified</span>
-                                                    @else
-                                                        <span class="chip a">Unverified</span>
-                                                    @endif
-                                                    {{ $article->retrievedAt?->format('d M Y') }}
-                                                </div>
-                                                @if ($article->summary)
-                                                    <div class="sum">{{ $article->summary }}</div>
-                                                @endif
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
+                    <div class="panel" style="padding-bottom:18px;">
+                        <h2><span class="k">Step 3</span>Choose your newsletter layout</h2>
+                        <div class="layoutbar">
+                            @foreach ($layouts as $code => $layout)
+                                <a class="lp{{ $code === $layoutCode ? ' active' : '' }}"
+                                   href="{{ route('newsletter.layout', $code) }}"
+                                   title="{{ $layout['blurb'] }}">
+                                    {{ $layout['name'] }}
+                                    <small>{{ $layout['tag'] }}</small>
+                                </a>
+                            @endforeach
+                            <span class="note">{{ $currentLayout['name'] ?? '' }} — {{ $currentLayout['blurb'] ?? '' }}</span>
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="preview">
-                    <h2 style="font-size:17px;margin:0 0 10px;">Live preview — layout <strong>{{ $currentLayout['name'] ?? $layoutCode }}</strong></h2>
+                    <h2 style="font-size:17px;margin:0 0 10px;"><span style="color:var(--gold-deep);font-size:12px;letter-spacing:.1em;margin-right:8px;">Step 4</span>Newsletter preview — layout <strong>{{ $currentLayout['name'] ?? $layoutCode }}</strong></h2>
                     <div class="shell">
                         <div class="zoom">
                             <div class="nlsheet-wrap">
@@ -327,6 +283,14 @@
                                 ])
                             </div>
                         </div>
+                    </div>
+                    <div class="exportbar" style="margin-top:20px;">
+                        <a class="btn btn-gold btn-big" href="{{ route('newsletter.pdf') }}">Generate &amp; Download PDF</a>
+                        <a class="btn btn-ghost" href="{{ route('newsletter.reset') }}">Regenerate Newsletter</a>
+                        <span style="font-size:12.5px;color:var(--ink-faint);">
+                            The PDF mirrors this preview, exactly three pages, one organisation per page.
+                            Your history is only recorded once a PDF is successfully generated.
+                        </span>
                     </div>
                 </div>
             @endif

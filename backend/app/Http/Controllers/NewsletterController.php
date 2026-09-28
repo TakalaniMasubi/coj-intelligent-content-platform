@@ -70,6 +70,14 @@ class NewsletterController extends Controller
         return redirect()->route('newsletter.studio');
     }
 
+    public function reset(Request $request)
+    {
+        $request->session()->forget(self::SESSION_COMPOSITION);
+        $request->session()->forget(self::SESSION_PDF_STATUS);
+
+        return redirect()->route('newsletter.studio');
+    }
+
     public function setLayout(Request $request, string $layout)
     {
         $composition = $this->compositionFromSession($request);

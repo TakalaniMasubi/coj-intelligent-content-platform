@@ -226,7 +226,17 @@ php artisan serve     # then open http://localhost:8000/newsletter
   three most relevant organisations, then matches each to curated repository
   articles deterministically (title/subject/summary relevance; new-item then
   older-item preference). Fewer than three eligible results are reported
-  honestly as "Insufficient verified information available."
+  honestly as "Insufficient results" and the topic form stays ready to retry —
+  the newsletter never invents organisations or articles.
+- **Publication-style pages, one organisation per page:** page 1 opens with
+  the masthead (CoJ logo, eyebrow, edition title, seal), the “this edition”
+  introduction and the top organisation; pages 2 and 3 carry a running
+  header, the next organisation feature and a professional footer. Every
+  feature page shows a real logo (or clean monogram), the matched article
+  with headline/summary/source/date plus a large photo area (or honest neutral
+  panel), and the organisation’s mandate/description when the repository has
+  it. The web preview marks the page boundaries (“PAGE N OF 3”) so what you
+  see matches the downloaded document exactly.
 - **One composition, four layouts:** `executive-brief`, `news-insights`,
   `municipal-spotlight` and `magazine` share the same composed content; the
   layout pills switch the live web preview and the PDF without re-selecting.
@@ -237,8 +247,10 @@ php artisan serve     # then open http://localhost:8000/newsletter
 - **Exact 3-page PDF:** Dompdf renders the same sheets and the result is
   validated page-by-page (`pdf.page_target = 3`, `pdf.regenerate_attempts`);
   over/under-filled layouts are regenerated at a more/less dense profile so
-  the delivered PDF is always exactly three pages. The last page carries the
-  generation stamp, edition id and footer.
+  the delivered PDF is always exactly three pages, one organisation per page.
+  Page 3 also carries the colophon, generation stamp and edition id. The
+  studio presents a prominent **"Generate & Download PDF"** button plus a
+  **Regenerate Newsletter** reset that returns it to the topic step.
 - **History:** downloading the PDF writes an auditable
   `newsletter_generations` record (query, layout, edition, timestamps) into
   the JSON volume; creating/styling never writes history.
@@ -261,11 +273,14 @@ municipal intelligence newsletter for any topic. It reuses the real selection
 pipeline read-only to pick three organisations, matches them to curated
 articles deterministically, and renders one composition across four layouts
 (`executive-brief`, `news-insights`, `municipal-spotlight`, `magazine`) for
-both the live web preview and Dompdf. PDF generation validates the page count
-and regenerates at a different density until the result is exactly three
-pages; downloading the PDF writes a `newsletter_generations` history record
+both the live web preview and Dompdf. The rendered newsletter is a three-page
+publication — masthead and edition introduction plus one organisation feature
+per page, with folios, running headers and professional footers. PDF
+generation validates the page count and regenerates at a different density
+until the result is exactly three pages; downloading the PDF writes a
+`newsletter_generations` history record
 (query, layout, edition, timestamps) into the JSON volume. Organisations and
 articles use honest media (real logo/image when available, otherwise clean
 monogram/panel fallbacks), and the whole studio works with zero AI and no API
-keys. The PHPUnit suite now has 159 tests. See
+keys. The PHPUnit suite now has 163 tests. See
 `docs/architecture/README.md` for the full implementation status register.

@@ -43,16 +43,18 @@ class NewsletterStudioTest extends TestCase
         $this->get('/newsletter')
             ->assertOk()
             ->assertSee('Newsletter Studio')
-            ->assertSee('Compose a newsletter');
+            ->assertSee('Choose your topic')
+            ->assertSee('Generate Newsletter');
     }
 
     public function test_the_studio_route_shows_the_step_registry(): void
     {
         $this->get('/newsletter')
             ->assertOk()
-            ->assertSee('Choose a topic')
-            ->assertSee('Top-3 organisations')
-            ->assertSee('Layout & PDF');
+            ->assertSee('Choose your topic')
+            ->assertSee('Your selected organisations')
+            ->assertSee('Choose your newsletter layout')
+            ->assertSee('Newsletter preview &amp; PDF', false);
     }
 
     public function test_composing_a_topic_honestly_reuses_the_selection_pipeline(): void
@@ -64,6 +66,7 @@ class NewsletterStudioTest extends TestCase
         // same organisations and ordering the selection API would return.
         $this->get('/newsletter')
             ->assertOk()
+            ->assertSee('Your selected organisations')
             ->assertSee('Pikitup')
             ->assertSee('Joburg Property Company')
             ->assertSee('Joburg Tourism Company')
@@ -73,14 +76,63 @@ class NewsletterStudioTest extends TestCase
             ->assertSee('Magazine');
     }
 
-    public function test_an_insufficient_topic_is_surfaced_honestly(): void
+    public function test_composed_organisations_render_with_publication_previews(): void
+    {
+        $this->post('/newsletter/compose', ['topic' => 'waste management']);
+
+        $this->get('/newsletter')
+            ->assertOk()
+            // Each of the three organisations shows a selected strip preview.
+            ->assertSee('Featured article')
+            // The matched article is displayed as real repository content.
+            ->assertSee('Pikitup: waste management for the City')
+            // Pikitup has no logo file in the seed volume, so a monogram fallback renders.
+            ->assertSee('ns-monogram')
+            // Pikitup's article has no image, so an editorial panel fallback renders.
+            ->assertSee('ns-panel-hero');
+    }
+
+    public function test_all_four_layouts_are_selectable_from_the_studio(): void
+    {
+        $this->post('/newsletter/compose', ['topic' => 'waste management']);
+
+        $this->get('/newsletter')
+            ->assertOk()
+            ->assertSee('newsletter/layout/executive-brief')
+            ->assertSee('newsletter/layout/news-insights')
+            ->assertSee('newsletter/layout/municipal-spotlight')
+            ->assertSee('newsletter/layout/magazine');
+    }
+
+    public function test_the_preview_shows_exactly_three_pages_one_organisation_per_page(): void
+    {
+        $this->post('/newsletter/compose', ['topic' => 'waste management']);
+
+        $html = $this->get('/newsletter')->assertOk()->getContent();
+
+        $this->assertSame(3, substr_count($html, 'class="ns-page ns-page-'));
+        $this->assertSame(1, substr_count($html, 'class="ns-page ns-page-1"'));
+        $this->assertSame(1, substr_count($html, 'class="ns-page ns-page-2'));
+        $this->assertSame(1, substr_count($html, 'class="ns-page ns-page-3'));
+        $this->assertStringContainsString('ns-layout-executive-brief', $html);
+        $this->assertStringContainsString('Page 1 of 3', $html);
+        $this->assertStringContainsString('Page 2 of 3', $html);
+        $this->assertStringContainsString('Page 3 of 3', $html);
+        $this->assertStringContainsString('Generate &amp; Download PDF', $html);
+    }
+
+    public function test_an_insufficient_topic_is_surfaced_honestly_and_replayable(): void
     {
         $this->post('/newsletter/compose', ['topic' => 'transport'])
             ->assertRedirect('/newsletter');
 
         $this->get('/newsletter')
             ->assertOk()
-            ->assertSee('Insufficient results');
+            ->assertSee('Insufficient results')
+            ->assertSee('Generate Newsletter')
+            // No organisations are invented for topics the pipeline cannot back.
+            ->assertDontSee('Pikitup')
+            ->assertDontSee('Joburg Property Company');
     }
 
     public function test_the_topic_field_is_required_and_bounded(): void
@@ -195,5 +247,23 @@ class NewsletterStudioTest extends TestCase
         $payload = json_decode((string) file_get_contents($this->runtimeVolume.'/newsletters.json'), true);
 
         $this->assertCount(2, $payload['newsletter_generations']);
+    }
+
+    public function test_regenerate_resets_the_composition_and_returns_to_the_topic_form(): void
+    {
+        $this->post('/newsletter/compose', ['topic' => 'waste management']);
+
+        $this->assertIsArray($this->app['session']->get(NewsletterController::SESSION_COMPOSITION));
+
+        $this->get('/newsletter/reset')
+            ->assertRedirect('/newsletter');
+
+        $this->assertNull($this->app['session']->get(NewsletterController::SESSION_COMPOSITION));
+
+        $this->get('/newsletter')
+            ->assertOk()
+            ->assertSee('Choose your topic')
+            ->assertSee('Generate Newsletter')
+            ->assertDontSee('Pikitup');
     }
 }

@@ -1,405 +1,314 @@
-/*
-|--------------------------------------------------------------------------
-| Newsletter sheet styles (shared web preview + Dompdf PDF)
-|--------------------------------------------------------------------------
-| Written for Dompdf compatibility: tables and inline-block layouts, solid
-| fills, em-based sizing so the density overrides scale the whole document.
-| `text-transform` is avoided — labels are written uppercase in the HTML.
-*/
+<style type="text/css">
+    /* ---------- Newsletter sheet: shared web + PDF (Dompdf-safe) ---------- */
+    .nlsheet {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #1d1d1b;
+        font-size: 11.5px;
+        line-height: 1.5;
+    }
+    .nlsheet table { border-collapse: collapse; }
+    .nlsheet img { display: block; }
 
-.nlsheet {
-    width: 100%;
-    background: #ffffff;
-    color: #1f2430;
-    font-family: 'DejaVu Sans', Arial, sans-serif;
-    font-size: 13px;
-    line-height: 1.55;
-}
+    .nlsheet .ns-page { padding: 18px 20px 14px; }
 
-.nlsheet * { box-sizing: border-box; }
+    /* Web preview: visible page boundaries --------------------------------- */
+    .ns-preview { background: #ece7de; padding: 26px 16px 30px; border-radius: 10px; }
+    .ns-preview .nlsheet { background: #ffffff; }
+    .ns-preview .nlsheet .ns-page {
+        box-shadow: 0 8px 26px rgba(20, 20, 20, 0.18);
+        border-top: 8px solid #d7d0c2;
+        border-radius: 4px;
+        margin-bottom: 26px;
+        min-height: 980px;
+    }
+    .ns-preview .nlsheet .ns-page-1 { border-top-color: transparent; }
+    .ns-folio {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        text-align: right;
+        color: #8a8478;
+        padding: 2px 0 10px;
+        border-bottom: 1px solid #e5dfd3;
+        margin-bottom: 12px;
+    }
 
-.nlsheet .ns-page {
-    padding: 0 0.1em 0.3em;
-}
+    /* PDF page breaks ------------------------------------------------------- */
+    .nlsheet .breaks { page-break-after: always; }
 
-.nlsheet .breaks {
-    page-break-before: always;
-}
+    /* Masthead --------------------------------------------------------------- */
+    .ns-masthead { border-bottom: 3px double #141414; padding: 6px 0 10px; margin-bottom: 12px; }
+    .ns-mast-top { width: 100%; }
+    .ns-mast-logo { width: 26%; vertical-align: middle; }
+    .ns-mast-seal { width: 12%; vertical-align: middle; text-align: right; }
+    .ns-mast-main { vertical-align: middle; text-align: center; padding: 0 12px; }
+    .ns-eyebrow {
+        font-size: 8.5px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #c8102e;
+        font-weight: 700;
+        margin: 0 0 4px;
+    }
+    .ns-title {
+        font-size: 25px;
+        line-height: 1.15;
+        margin: 0 0 3px;
+        letter-spacing: -0.01em;
+        color: #141414;
+    }
+    .ns-subtitle { font-size: 11px; color: #55524c; margin: 0 0 5px; }
+    .ns-date { font-size: 9.5px; color: #8a8478; margin: 0; letter-spacing: 0.04em; }
 
-/* ---------------- Masthead ---------------- */
+    /* Running header (pages 2-3) -------------------------------------------- */
+    .ns-rhead {
+        width: 100%;
+        margin-bottom: 12px;
+        border-bottom: 2px solid #141414;
+    }
+    .ns-rhead td { padding: 0 4px 6px; }
+    .ns-rhead-side { font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8478; width: 24%; }
+    .ns-rhead-title { font-size: 11px; font-weight: 700; color: #141414; text-align: center; text-transform: uppercase; letter-spacing: 0.12em; }
 
-.nlsheet .ns-masthead {
-    text-align: center;
-    border-bottom: 0.28em solid #f5b800;
-    padding: 0 0.4em 1em;
-    margin-bottom: 1.1em;
-}
+    /* Introduction ----------------------------------------------------------- */
+    .ns-intro {
+        font-size: 12.5px;
+        line-height: 1.55;
+        color: #3a3833;
+        padding: 10px 14px;
+        margin: 0 0 14px;
+        border-left: 4px solid #c8102e;
+        background: #faf8f4;
+    }
 
-.nlsheet .ns-mast-logo {
-    display: block;
-    text-align: center;
-    margin-bottom: 0.5em;
-}
+    /* Feature block ---------------------------------------------------------- */
+    .ns-feature { }
+    .ns-kicker {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #c8102e;
+        margin: 0 0 8px;
+    }
+    .ns-org-head { width: 100%; margin-bottom: 8px; }
+    .ns-org-logo { width: 12%; vertical-align: middle; }
+    .ns-org-body { vertical-align: middle; padding-left: 12px; }
+    .ns-orgname { font-size: 19px; line-height: 1.2; margin: 0 0 2px; color: #141414; }
+    .ns-orgmeta { font-size: 10px; color: #6d6860; margin: 0; letter-spacing: 0.02em; }
+    .ns-dek { font-size: 12px; line-height: 1.5; color: #3a3833; font-style: italic; margin: 6px 0 8px; }
+    .ns-dek-center { text-align: center; }
+    .ns-body {
+        font-size: 11.5px;
+        line-height: 1.55;
+        color: #2c2a26;
+        margin: 0 0 8px;
+        padding: 8px 12px;
+        background: #faf8f4;
+        border-left: 3px solid #d4a017;
+    }
+    .ns-body p { margin: 0; }
+    .ns-facts {
+        font-size: 10px;
+        color: #6d6860;
+        border-top: 1px solid #e5dfd3;
+        border-bottom: 1px solid #e5dfd3;
+        padding: 5px 0;
+        margin: 0 0 10px;
+        letter-spacing: 0.03em;
+    }
+    .ns-facts strong { color: #141414; }
 
-.nlsheet .ns-mast-logo img {
-    display: inline-block;
-    vertical-align: middle;
-}
+    /* Article ------------------------------------------------------------------ */
+    .ns-article { margin-top: 4px; }
+    .ns-art-row { width: 100%; }
+    .ns-art-body { vertical-align: top; padding-right: 14px; }
+    .ns-art-photo { width: 47%; vertical-align: top; }
+    .ns-art-hero { text-align: center; margin-bottom: 10px; }
+    .ns-art-kicker {
+        font-size: 8.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #a67c00;
+        margin: 0 0 4px;
+    }
+    .ns-article-title { font-size: 15.5px; line-height: 1.25; margin: 0 0 4px; color: #141414; }
+    .ns-article-src { font-size: 9px; color: #8a8478; margin: 0 0 6px; }
+    .ns-article-sum { font-size: 11.5px; line-height: 1.55; color: #2c2a26; margin: 0; }
+    .ns-article-link { font-size: 9px; color: #6d6860; margin: 8px 0 0 0; word-break: break-all; }
+    .ns-art-secondary {
+        margin-top: 10px;
+        padding-top: 8px;
+        border-top: 1px solid #e5dfd3;
+        font-size: 11px;
+        color: #3a3833;
+    }
+    .ns-art-second-label {
+        font-size: 8px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #c8102e;
+        font-weight: 700;
+        margin-right: 8px;
+    }
+    .ns-art-second-title { font-weight: 700; color: #141414; }
+    .ns-art-second-src { color: #8a8478; font-size: 9.5px; margin-left: 8px; }
 
-.nlsheet .ns-mast-seal {
-    display: inline-block;
-    margin-top: 0.2em;
-}
+    .ns-noarticle {
+        font-size: 11.5px;
+        color: #6d6860;
+        padding: 14px 16px;
+        border: 1px dashed #cfc8ba;
+        background: #faf8f4;
+        font-style: italic;
+    }
 
-.nlsheet .ns-eyebrow {
-    font-size: 0.62em;
-    letter-spacing: 0.16em;
-    color: #966f00;
-    font-weight: 700;
-    margin: 0 0 0.4em;
-}
+    /* Media assets ------------------------------------------------------------- */
+    .ns-logo-img { max-width: 100%; }
+    .ns-seal-img { max-width: 100%; }
+    .ns-img-hero { max-width: 100%; margin: 0 auto; }
+    .ns-monogram {
+        display: inline-block;
+        width: 52px;
+        height: 52px;
+        line-height: 52px;
+        text-align: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: 0.02em;
+    }
+    .ns-monogram-hero {
+        display: block;
+        width: 96px;
+        height: 96px;
+        line-height: 96px;
+        text-align: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 30px;
+        margin: 0 auto;
+    }
+    .ns-panel {
+        display: inline-block;
+        min-height: 130px;
+        color: #ffffff;
+        text-align: center;
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        vertical-align: middle;
+    }
+    .ns-panel-hero {
+        display: block;
+        min-height: 190px;
+        color: #ffffff;
+        text-align: center;
+        line-height: 190px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+    }
+    .ns-panel-sm {
+        display: inline-block;
+        min-height: 40px;
+        color: #ffffff;
+        text-align: center;
+        font-size: 9px;
+    }
 
-.nlsheet .ns-title {
-    font-family: 'DejaVu Serif', Georgia, serif;
-    font-size: 1.9em;
-    color: #141414;
-    letter-spacing: 0.02em;
-    margin: 0.05em 0 0.15em;
-    line-height: 1.15;
-}
+    /* Layout specific --------------------------------------------------------- */
+    .ns-feature-magazine .ns-mag-name {
+        font-size: 26px;
+        letter-spacing: -0.01em;
+        color: #141414;
+        margin: 0 0 2px;
+        border-bottom: 2px solid #141414;
+        padding-bottom: 4px;
+        margin-bottom: 6px;
+    }
+    .ns-spotlight-head { text-align: center; padding: 10px 0 8px; }
+    .ns-spotlight-logo { text-align: center; padding-bottom: 8px; }
+    .ns-quote {
+        font-size: 12px;
+        font-style: italic;
+        color: #6d6860;
+        text-align: center;
+        margin: 12px 0 0;
+        border-top: 1px solid #e5dfd3;
+        padding-top: 10px;
+    }
 
-.nlsheet .ns-subtitle {
-    font-family: 'DejaVu Serif', Georgia, serif;
-    font-style: italic;
-    color: #0f5c3a;
-    font-size: 1.02em;
-    margin: 0 0 0.5em;
-}
+    /* Page footer --------------------------------------------------------------- */
+    .ns-pagefoot {
+        width: 100%;
+        margin-top: 16px;
+        border-top: 2px solid #141414;
+        font-size: 8.5px;
+        letter-spacing: 0.06em;
+        color: #8a8478;
+    }
+    .ns-pagefoot td { padding: 5px 4px 0; }
+    .ns-pagefoot-left { text-align: left; }
+    .ns-pagefoot-mid { text-align: center; }
+    .ns-pagefoot-right { text-align: right; }
 
-.nlsheet .ns-date {
-    font-size: 0.66em;
-    color: #6b6b6b;
-    letter-spacing: 0.08em;
-    margin: 0;
-}
+    /* Colophon ----------------------------------------------------------------- */
+    .ns-colophon {
+        margin-top: 18px;
+        padding-top: 12px;
+        border-top: 1px solid #e5dfd3;
+        text-align: center;
+        color: #8a8478;
+    }
+    .ns-seal-row { text-align: center; padding-bottom: 6px; }
+    .ns-colophon-notes { font-size: 12px; font-style: italic; color: #3a3833; margin: 0 0 6px; }
+    .ns-colophon-src { font-size: 8.5px; line-height: 1.5; margin: 0; letter-spacing: 0.03em; }
 
-/* ---------------- Intro / section titles ---------------- */
+    /* Density: PDF regeneration steps (smaller text) ----------------------------- */
+    .nlsheet.nsd1 { font-size: 11px; }
+    .nlsheet.nsd1 .ns-title { font-size: 23px; }
+    .nlsheet.nsd1 .ns-intro { font-size: 11.5px; }
+    .nlsheet.nsd1 .ns-orgname { font-size: 17.5px; }
+    .nlsheet.nsd1 .ns-article-title { font-size: 14.5px; }
+    .nlsheet.nsd1 .ns-article-sum { font-size: 11px; }
+    .nlsheet.nsd1 .ns-body { font-size: 11px; }
+    .nlsheet.nsd1 .ns-article-src { font-size: 8.5px; }
 
-.nlsheet .ns-intro {
-    background: #f7f1e1;
-    border-left: 0.32em solid #f5b800;
-    padding: 0.85em 1.05em;
-    margin: 0 0 1.2em;
-    font-size: 0.92em;
-    color: #2b2b2b;
-}
+    .nlsheet.nsd2 { font-size: 10.5px; }
+    .nlsheet.nsd2 .ns-title { font-size: 21px; }
+    .nlsheet.nsd2 .ns-intro { font-size: 11px; }
+    .nlsheet.nsd2 .ns-orgname { font-size: 16px; }
+    .nlsheet.nsd2 .ns-article-title { font-size: 13.5px; }
+    .nlsheet.nsd2 .ns-article-sum { font-size: 10.5px; }
+    .nlsheet.nsd2 .ns-body { font-size: 10.5px; }
+    .nlsheet.nsd2 .ns-article-src { font-size: 8px; }
 
-.nlsheet .ns-section-title {
-    font-size: 0.66em;
-    letter-spacing: 0.2em;
-    color: #0f5c3a;
-    font-weight: 700;
-    margin: 0 0 0.75em;
-    border-bottom: 0.12em solid #ded9c8;
-    padding-bottom: 0.4em;
-}
+    .nlsheet.nsd3 { font-size: 10px; }
+    .nlsheet.nsd3 .ns-title { font-size: 19px; }
+    .nlsheet.nsd3 .ns-intro { font-size: 10.5px; }
+    .nlsheet.nsd3 .ns-orgname { font-size: 14.5px; }
+    .nlsheet.nsd3 .ns-article-title { font-size: 12.5px; }
+    .nlsheet.nsd3 .ns-article-sum { font-size: 10px; }
+    .nlsheet.nsd3 .ns-body { font-size: 10px; }
+    .nlsheet.nsd3 .ns-article-src { font-size: 7.5px; }
 
-/* ---------------- Page 1 overview cards ---------------- */
+    .nlsheet.nsd4 { font-size: 9.5px; }
+    .nlsheet.nsd4 .ns-title { font-size: 17px; }
+    .nlsheet.nsd4 .ns-intro { font-size: 10px; }
+    .nlsheet.nsd4 .ns-orgname { font-size: 13px; }
+    .nlsheet.nsd4 .ns-article-title { font-size: 11.5px; }
+    .nlsheet.nsd4 .ns-article-sum { font-size: 9px; }
+    .nlsheet.nsd4 .ns-body { font-size: 9.5px; }
+    .nlsheet.nsd4 .ns-article-src { font-size: 7px; }
 
-.nlsheet .ns-overview {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.nlsheet .ns-card {
-    border: 1px solid #e2ddcc;
-    background: #ffffff;
-    padding: 0.85em 0.9em 0.7em;
-    vertical-align: top;
-    width: 33.33%;
-}
-
-.nlsheet .ns-card-top {
-    margin-bottom: 0.5em;
-}
-
-.nlsheet .ns-rank {
-    font-size: 1.05em;
-    font-weight: 700;
-    color: #c79500;
-}
-
-.nlsheet .ns-card-org {
-    font-weight: 700;
-    font-size: 0.95em;
-    color: #141414;
-    line-height: 1.25;
-}
-
-.nlsheet .ns-card-type {
-    font-size: 0.66em;
-    color: #5c6470;
-    letter-spacing: 0.06em;
-    margin-top: 0.25em;
-}
-
-/* ---------------- Chips ---------------- */
-
-.nlsheet .ns-chip {
-    display: inline-block;
-    padding: 0.14em 0.65em 0.12em;
-    font-size: 0.58em;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    border-radius: 0.3em;
-    vertical-align: middle;
-}
-
-.nlsheet .ns-chip-green { background: #0f5c3a; color: #ffffff; }
-.nlsheet .ns-chip-amber { background: #9a6b00; color: #ffffff; }
-.nlsheet .ns-chip-grey { background: #6f7378; color: #ffffff; }
-.nlsheet .ns-chip-gold { background: #f5b800; color: #3a2e00; }
-.nlsheet .ns-chip-blue { background: #1d4e89; color: #ffffff; }
-.nlsheet .ns-chip-red { background: #b03a2e; color: #ffffff; }
-
-/* ---------------- Feature block ---------------- */
-
-.nlsheet .ns-feature {
-    margin-bottom: 1.05em;
-    border-bottom: 1px solid #e2ddcc;
-    padding-bottom: 0.7em;
-}
-
-.nlsheet .ns-feature:last-child {
-    border-bottom: none;
-}
-
-.nlsheet .ns-kicker {
-    font-size: 0.6em;
-    letter-spacing: 0.18em;
-    color: #b03a2e;
-    font-weight: 700;
-    margin: 0 0 0.35em;
-}
-
-.nlsheet .ns-feature-head {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 0.4em;
-}
-
-.nlsheet .ns-fh-logo {
-    width: 4.4em;
-    vertical-align: middle;
-    padding-right: 0.8em;
-}
-
-.nlsheet .ns-fh-body {
-    vertical-align: middle;
-}
-
-.nlsheet .ns-orgname {
-    font-family: 'DejaVu Serif', Georgia, serif;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: #161b22;
-    margin: 0 0 0.15em;
-    line-height: 1.2;
-}
-
-.nlsheet .ns-meta {
-    font-size: 0.7em;
-    color: #4b5563;
-    margin: 0;
-}
-
-.nlsheet .ns-dek {
-    font-family: 'DejaVu Serif', Georgia, serif;
-    font-style: italic;
-    color: #0f5c3a;
-    font-size: 0.96em;
-    margin: 0.1em 0 0.55em;
-}
-
-.nlsheet .ns-body p {
-    margin: 0 0 0.65em;
-    font-size: 0.88em;
-    color: #2b2b2b;
-    text-align: justify;
-}
-
-.nlsheet .ns-noarticle {
-    font-style: italic;
-    font-size: 0.8em;
-    color: #6b6b6b;
-    background: #f4f4f1;
-    padding: 0.55em 0.9em;
-}
-
-.nlsheet .ns-quote {
-    font-family: 'DejaVu Serif', Georgia, serif;
-    font-style: italic;
-    font-size: 0.98em;
-    color: #0f5c3a;
-    border-left: 0.32em solid #f5b800;
-    background: #fbf8f1;
-    padding: 0.6em 0.95em;
-    margin: 0.55em 0;
-    line-height: 1.5;
-}
-
-.nlsheet .ns-why {
-    border-left: 0.28em solid #0f5c3a;
-    background: #f3f6f2;
-    padding: 0.55em 0.85em;
-    margin: 0.6em 0;
-    font-size: 0.78em;
-    color: #2b2b2b;
-}
-
-.nlsheet .ns-why ul {
-    margin: 0.2em 0 0;
-    padding-left: 1.2em;
-}
-
-.nlsheet .ns-why li { margin-bottom: 0.15em; }
-
-.nlsheet .ns-facts {
-    border-top: 0.22em solid #e2ddcc;
-    padding: 0.5em 0 0;
-    margin-top: 0.7em;
-    font-size: 0.78em;
-    color: #3a4048;
-}
-
-/* ---------------- Articles ---------------- */
-
-.nlsheet .ns-articles {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 0.6em;
-}
-
-.nlsheet .ns-article td {
-    border-top: 1px dashed #d8d3c2;
-    padding: 0.55em 0.1em;
-    vertical-align: top;
-}
-
-.nlsheet .ns-article-title {
-    font-weight: 700;
-    font-size: 0.92em;
-    color: #141414;
-    line-height: 1.3;
-    margin: 0 0 0.2em;
-}
-
-.nlsheet .ns-article-src {
-    font-size: 0.66em;
-    color: #6b6b6b;
-    letter-spacing: 0.06em;
-    margin: 0 0 0.3em;
-}
-
-.nlsheet .ns-article-sum {
-    font-size: 0.82em;
-    color: #333333;
-    margin: 0 0 0.3em;
-}
-
-.nlsheet .ns-article-link {
-    font-size: 0.7em;
-    color: #1d4e89;
-}
-
-.nlsheet .ns-article-photo {
-    width: 7.6em;
-    padding-left: 0.8em;
-    vertical-align: top;
-}
-
-/* ---------------- Media assets ---------------- */
-
-.nlsheet .ns-logo-img,
-.nlsheet .ns-seal-img {
-    display: inline-block;
-}
-
-.nlsheet .ns-monogram {
-    display: inline-block;
-    width: 2.7em;
-    height: 2.7em;
-    line-height: 2.7em;
-    text-align: center;
-    border-radius: 50%;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 1.05em;
-    letter-spacing: 0.04em;
-    vertical-align: middle;
-    border: 0.12em solid rgba(0, 0, 0, 0.12);
-}
-
-.nlsheet .ns-panel {
-    display: inline-block;
-    width: 100%;
-    color: #ffffff;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    font-size: 0.78em;
-    padding: 0.85em 0.4em;
-    border-radius: 0.4em;
-    vertical-align: middle;
-}
-
-.nlsheet .ns-panel-sm {
-    display: inline-block;
-    width: 100%;
-    color: #ffffff;
-    text-align: center;
-    font-weight: 700;
-    font-size: 0.66em;
-    padding: 0.55em 0.3em;
-    border-radius: 0.3em;
-    vertical-align: middle;
-}
-
-/* ---------------- Page footer strip ---------------- */
-
-.nlsheet .ns-pageno {
-    border-top: 0.12em solid #e2ddcc;
-    margin-top: 0.7em;
-    padding-top: 0.45em;
-    font-size: 0.62em;
-    color: #6b6b6b;
-    text-align: center;
-    letter-spacing: 0.08em;
-}
-
-.nlsheet .ns-footer {
-    border-top: 0.22em solid #e2ddcc;
-    margin-top: 0.9em;
-    padding: 0.65em 0.2em 0;
-    font-size: 0.64em;
-    color: #6b6b6b;
-    line-height: 1.6;
-    text-align: center;
-}
-
-.nlsheet .ns-seal-row {
-    text-align: center;
-    margin: 0.6em 0 0.2em;
-}
-
-/* ---------------- Density overrides ---------------- */
-
-.nlsheet.nsd1 { font-size: 12.1px; line-height: 1.5; }
-.nlsheet.nsd2 { font-size: 11.3px; line-height: 1.46; }
-.nlsheet.nsd3 { font-size: 10.5px; line-height: 1.42; }
-.nlsheet.nsd4 { font-size: 9.8px; line-height: 1.38; }
-
-.nlsheet.nsd1 .ns-feature { margin-bottom: 0.9em; }
-.nlsheet.nsd2 .ns-feature { margin-bottom: 0.7em; }
-.nlsheet.nsd3 .ns-feature { margin-bottom: 0.5em; }
-.nlsheet.nsd4 .ns-feature { margin-bottom: 0.4em; }
+    /* Print cleanup ---------------------------------------------------------------- */
+    @media print {
+        body { background: #ffffff !important; }
+        .ns-preview { background: #ffffff !important; padding: 0 !important; border-radius: 0 !important; }
+        .ns-preview .nlsheet .ns-page {
+            box-shadow: none !important;
+            margin: 0 !important;
+            min-height: 0 !important;
+        }
+    }
+</style>

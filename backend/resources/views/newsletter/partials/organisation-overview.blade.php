@@ -1,28 +1,38 @@
-<div class="ns-section-title">This Edition — Top {{ count($organisations) }} Organisations</div>
-<table class="ns-overview" cellpadding="0" cellspacing="0" role="presentation">
-    <tr>
-        @foreach ($organisations as $organisation)
-            <td class="ns-card">
-                <div class="ns-card-top">
-                    <span class="ns-rank">{{ str_pad((string) $organisation->rank, 2, '0', STR_PAD_LEFT) }}</span>
-                    &nbsp;<span class="ns-chip ns-chip-gold">Score {{ $organisation->score }}</span>
-                </div>
-                <div style="text-align:center;margin-bottom:0.55em;">
+@php($featured = count($organisations))
+<div class="nsel-strip">
+    @foreach ($organisations as $n => $organisation)
+        <article class="nsel-org">
+            <div class="nsel-org-head">
+                <span class="nsel-rank">{{ str_pad((string) $organisation->rank, 2, '0', STR_PAD_LEFT) }}</span>
+                <div class="nsel-logo">
                     @include('newsletter.partials.media-asset', [
                         'asset' => $organisation->logo,
-                        'context' => $context,
-                        'size' => 44,
+                        'context' => 'web',
+                        'size' => 46,
+                        'variant' => 'sm',
                     ])
                 </div>
-                <div class="ns-card-org" style="text-align:center;">{{ $organisation->name }}</div>
-                <div class="ns-card-type" style="text-align:center;">
-                    {{ ucfirst($organisation->type) }}
-                    <br>
-                    @include('newsletter.partials.verification-chip', [
-                        'verification' => $organisation->verification,
-                    ])
+                <div class="nsel-org-title">
+                    <h3>{{ $organisation->name }}</h3>
+                    <p>{{ ucfirst($organisation->type) }}{{ $organisation->officialWebsite ? ' · ' . $organisation->officialWebsite : '' }}</p>
                 </div>
-            </td>
-        @endforeach
-    </tr>
-</table>
+            </div>
+            @if (($organisation->mandate ?? '') !== '')
+                <p class="nsel-mandate">{{ $organisation->mandate }}</p>
+            @elseif (($organisation->description ?? '') !== '')
+                <p class="nsel-desc">{{ $organisation->description }}</p>
+            @endif
+            @if (count($organisation->articles) > 0)
+                <p class="nsel-art">
+                    <span class="nsel-art-label">Featured article</span>
+                    <span class="nsel-art-title">{{ $organisation->articles[0]->title }}</span>
+                </p>
+            @else
+                <p class="nsel-art nsel-art-none">
+                    <span class="nsel-art-label">Featured article</span>
+                    <span class="nsel-art-title">No relevant published article is currently available for this organisation.</span>
+                </p>
+            @endif
+        </article>
+    @endforeach
+</div>

@@ -1,52 +1,35 @@
-<div class="ns-feature">
-    <p class="ns-kicker">Magazine — Feature {{ $organisation->rank }}</p>
-    <table class="ns-feature-head" cellpadding="0" cellspacing="0" role="presentation">
-        <tr>
-            <td style="width:8em;vertical-align:middle;padding-right:0.9em;">
-                @include('newsletter.partials.media-asset', [
-                    'asset' => $organisation->logo,
-                    'context' => $context,
-                    'size' => 64,
-                ])
-            </td>
-            <td style="vertical-align:middle;">
-                <h2 class="ns-orgname" style="font-size:1.5em;">{{ $organisation->name }}</h2>
-                <p class="ns-meta">
-                    {{ ucfirst($organisation->type) }}
-                    &nbsp;·&nbsp;
-                    @include('newsletter.partials.verification-chip', [
-                        'verification' => $organisation->verification,
-                    ])
-                    &nbsp;·&nbsp;
-                    <span class="ns-chip ns-chip-gold">Score {{ $organisation->score }}</span>
-                </p>
-            </td>
-        </tr>
-    </table>
-    <div class="ns-dek">The story behind the selection.</div>
-    <div class="ns-body">
-        @if ($organisation->description)
-            <p>{{ $organisation->description }}</p>
-        @else
-            <p>No description is currently available in the curated repository for this organisation.</p>
+@php($featured = count($composition->organisations()))
+@php($hero = 560 - (int) $density * 60)
+<div class="ns-feature ns-feature-magazine">
+    <p class="ns-kicker">Magazine &middot; Feature {{ $organisation->rank }} of {{ $featured }}</p>
+
+    <h2 class="ns-orgname ns-mag-name">{{ $organisation->name }}</h2>
+    <p class="ns-orgmeta">
+        {{ ucfirst($organisation->type) }}
+        @if ($organisation->officialWebsite)
+            &nbsp;&middot;&nbsp; {{ $organisation->officialWebsite }}
         @endif
-    </div>
-    <div class="ns-quote">
-        &ldquo;Ranked {{ $organisation->rank }} of {{ $composition->available }} eligible
-        organisations for the topic “{{ $composition->topic }}” in the curated repository.&rdquo;
-    </div>
-    @if ($organisation->reasons !== [])
-        <div class="ns-why">
-            <strong>Editor's note — why this organisation</strong>
-            <ul>
-                @foreach ($organisation->reasons as $reason)
-                    <li>{{ $reason }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    </p>
+
     @include('newsletter.partials.article-list', [
         'organisation' => $organisation,
         'context' => $context,
+        'heroTop' => true,
+        'heroSize' => $hero,
     ])
+
+    @if (($organisation->mandate ?? '') !== '')
+        <p class="ns-dek">{{ $organisation->mandate }}</p>
+    @endif
+
+    @if (($organisation->description ?? '') !== '')
+        <div class="ns-body">
+            <p>{{ $organisation->description }}</p>
+        </div>
+    @endif
+
+    <p class="ns-quote">
+        &ldquo;Featured {{ $organisation->rank }} of {{ $featured }} in this edition for the topic
+        &lsquo;{{ $composition->topic }}&rsquo;.&rdquo;
+    </p>
 </div>

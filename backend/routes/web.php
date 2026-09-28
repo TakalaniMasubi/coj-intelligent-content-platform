@@ -20,6 +20,8 @@ Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newslet
 
 Route::post('/newsletter/compose', [NewsletterController::class, 'compose'])->name('newsletter.compose');
 
+Route::get('/newsletter/reset', [NewsletterController::class, 'reset'])->name('newsletter.reset');
+
 Route::get('/newsletter/layout/{layout}', [NewsletterController::class, 'setLayout'])->name('newsletter.layout');
 
 Route::get('/newsletter/pdf', [NewsletterController::class, 'downloadPdf'])->name('newsletter.pdf');

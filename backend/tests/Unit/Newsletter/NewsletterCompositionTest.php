@@ -67,6 +67,8 @@ class NewsletterCompositionTest extends TestCase
         $this->assertSame($originalOrganisation->name, $rebuiltOrganisation->name);
         $this->assertSame($originalOrganisation->score, $rebuiltOrganisation->score);
         $this->assertSame($originalOrganisation->verification, $rebuiltOrganisation->verification);
+        $this->assertSame($originalOrganisation->mandate, $rebuiltOrganisation->mandate);
+        $this->assertSame($originalOrganisation->description, $rebuiltOrganisation->description);
         $this->assertSame($originalOrganisation->logo->source, $rebuiltOrganisation->logo->source);
         $this->assertSame($originalOrganisation->logo->initials, $rebuiltOrganisation->logo->initials);
         $this->assertCount(1, $rebuiltOrganisation->articles);
@@ -122,6 +124,7 @@ class NewsletterCompositionTest extends TestCase
             verification: 'pending',
             abbreviation: 'PKT',
             description: 'City waste management entity.',
+            mandate: 'Keeps Johannesburg clean and waste-free.',
             officialWebsite: 'https://www.pikitup.co.za',
             reasons: ['Matches the topic terms'],
             matchingTerms: ['waste'],
