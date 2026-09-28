@@ -8,8 +8,8 @@ use Tests\Unit\Repositories\CreatesTempVolumes;
 
 class IntelligenceSelectApiTest extends TestCase
 {
-    use RefreshDatabase;
     use CreatesTempVolumes;
+    use RefreshDatabase;
 
     private string $runtimeVolume;
 
@@ -56,7 +56,7 @@ class IntelligenceSelectApiTest extends TestCase
         $this->assertSame([1, 2, 3], array_column($selections, 'rank'));
 
         $ids = array_column($selections, 'organisation_id');
-        $this->assertSame(['pikitup', 'jpc', 'joburg-tourism'], $ids);
+        $this->assertSame(['pikitup', 'environment-infrastructure', 'jpc'], $ids);
 
         // The strongly relevant PENDING organisation is selectable, and its
         // verification status is always exposed alongside the score.

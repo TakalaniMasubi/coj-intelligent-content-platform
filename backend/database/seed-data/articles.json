@@ -271,6 +271,23 @@
             "retrieved_at": "2026-09-22T00:00:00+00:00",
             "content_hash": "cf7e9313dddc383f89dbc30bdd349b003850cc3e81a95d2d4006e79d94ff5178",
             "archived_at": null
+        },
+        {
+            "id": "coj-art-environment-infrastructure",
+            "source_name": "joburg.org.za",
+            "source_url": "https://www.joburg.org.za",
+            "title": "Environment and Infrastructure Services: waste and environmental regulation in Johannesburg",
+            "summary": "Coordinates municipal environmental regulation, air quality, biodiversity conservation, water and sanitation oversight and infrastructure delivery across the City of Johannesburg.",
+            "subject": "environment and infrastructure",
+            "organisation_ids": [
+                "environment-infrastructure"
+            ],
+            "tier": "tier1",
+            "status": "unverified",
+            "published_at": null,
+            "retrieved_at": "2026-09-28T00:00:00+00:00",
+            "content_hash": "22ff6e33c0ae203b620e72fa1357a02dc0dc8915f5fc4628a452a57896d53713",
+            "archived_at": null
         }
     ]
 }

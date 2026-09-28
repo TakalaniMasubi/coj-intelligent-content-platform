@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Console;
 
+use App\Infrastructure\Persistence\Json\JsonArticleRepository;
 use App\Infrastructure\Persistence\Json\JsonOrganisationRepository;
+use App\Infrastructure\Persistence\Json\JsonSourceTrustRepository;
 use App\Infrastructure\Persistence\Json\RepositoryJsonGateway;
 use Tests\TestCase;
 use Tests\Unit\Repositories\CreatesTempVolumes;
@@ -30,8 +32,8 @@ class RepositoryConsoleCommandTest extends TestCase
         $this->assertFileExists($volume.'/organisations.json');
         $this->assertFileExists($volume.'/articles.json');
         $this->assertFileExists($volume.'/sources.json');
-        $this->assertSame(16, (new \App\Infrastructure\Persistence\Json\JsonArticleRepository(new RepositoryJsonGateway($volume)))->count());
-        $this->assertSame(14, (new \App\Infrastructure\Persistence\Json\JsonSourceTrustRepository(new RepositoryJsonGateway($volume)))->count());
+        $this->assertSame(17, (new JsonArticleRepository(new RepositoryJsonGateway($volume)))->count());
+        $this->assertSame(14, (new JsonSourceTrustRepository(new RepositoryJsonGateway($volume)))->count());
 
         $this->deleteDirectory($volume);
     }

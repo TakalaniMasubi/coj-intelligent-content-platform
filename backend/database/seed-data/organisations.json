@@ -11,6 +11,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.jhbcityparksandzoo.com",
+            "mandate": "To manage, develop and maintain Johannesburg's parks, cemeteries, public open spaces, street trees, botanical gardens and the Johannesburg Zoo.",
             "description": "Johannesburg City Parks and Zoo manages the city parks, cemeteries, public open spaces, street trees, botanical gardens and the Johannesburg Zoo.",
             "source_reference": "https://www.jhbcityparksandzoo.com",
             "source_links": [
@@ -31,6 +32,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.citypower.co.za",
+            "mandate": "To distribute and supply electricity reliably across the City of Johannesburg, managing connections, metering, prepaid electricity and outage response.",
             "description": "City Power distributes and supplies electricity to the City of Johannesburg, including connections, metering, prepaid electricity and outage management.",
             "source_reference": "https://www.citypower.co.za",
             "source_links": [
@@ -51,6 +53,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To facilitate community development and social services for residents and community organisations in the City of Johannesburg.",
             "description": "Community development and social services supporting residents and community organisations in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -71,6 +74,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To provide shared corporate services to the municipality, including human resources, ICT systems and facilities management.",
             "description": "Shared corporate services for the municipality, including human resources, ICT systems and facilities management.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -91,6 +95,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To regulate land use and direct spatial planning, town planning and building control in the City of Johannesburg.",
             "description": "Land use management, spatial planning, town planning and building control services in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -111,6 +116,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To drive economic growth, job creation, business support and investment promotion for the City of Johannesburg.",
             "description": "Economic development, job creation, business support and investment promotion for the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -131,16 +137,17 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
-            "description": "Environmental management and municipal infrastructure planning and delivery in the City of Johannesburg.",
+            "mandate": "To deliver environmental management and regulation, municipal infrastructure planning and delivery, waste management and regulation, and water management and biodiversity services in the City of Johannesburg.",
+            "description": "Environmental management and municipal infrastructure planning and delivery in the City of Johannesburg, including waste management and regulation and water management and biodiversity.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
                 "https://www.joburg.org.za"
             ],
             "tier": "tier2",
             "official_status": "active",
-            "verification_status": "pending",
-            "last_verified_at": null,
-            "last_updated": "2026-09-22T00:00:00+00:00"
+            "verification_status": "verified",
+            "last_verified_at": "2026-09-28T00:00:00+00:00",
+            "last_updated": "2026-09-28T00:00:00+00:00"
         },
         {
             "id": "finance",
@@ -151,6 +158,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To manage municipal budgeting, revenue collection, accounting and financial management for the City of Johannesburg.",
             "description": "Municipal budgeting, revenue collection, accounting and financial management for the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -171,6 +179,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To conduct forensic and anti-corruption investigations protecting the City of Johannesburg from fraud and corruption.",
             "description": "Forensic and anti-corruption investigations protecting the City of Johannesburg from fraud and corruption.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -191,6 +200,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To support municipal governance, covering council processes, accountability and oversight within the City of Johannesburg.",
             "description": "Municipal governance support covering council processes, accountability and oversight within the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -211,6 +221,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To provide municipal legal services, contract management and litigation support to the City of Johannesburg.",
             "description": "Municipal legal services, contract management and litigation support for the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -231,6 +242,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To coordinate strategic planning, policy development, research and intergovernmental and international relations for the City of Johannesburg.",
             "description": "Strategic planning, policy coordination, research, and intergovernmental and international relations for the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -251,6 +263,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To provide municipal health services including environmental health inspections and public health protection in the City of Johannesburg.",
             "description": "Municipal health services including environmental health inspections and public health protection in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -271,6 +284,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To deliver housing, title deed programmes and informal settlement upgrades in the City of Johannesburg.",
             "description": "Housing delivery, title deed programmes and informal settlement upgrades in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -291,6 +305,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.jda.org.za",
+            "mandate": "To plan and implement area-based public infrastructure and urban development projects for the City of Johannesburg.",
             "description": "The Johannesburg Development Agency is the city infrastructure and urban development agency, planning and implementing area-based public projects.",
             "source_reference": "https://www.jda.org.za",
             "source_links": [
@@ -311,6 +326,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://joburgcitytheatres.com",
+            "mandate": "To operate the municipal theatre grouping, including the Joburg Theatre, Soweto Theatre and Roodepoort Theatre.",
             "description": "Joburg City Theatres is the municipal theatre grouping, operating the Joburg Theatre, Soweto Theatre and Roodepoort Theatre.",
             "source_reference": "https://joburgcitytheatres.com",
             "source_links": [
@@ -331,6 +347,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To handle customer care, service requests, complaints handling and digital services for residents of the City of Johannesburg.",
             "description": "Customer care, service requests, complaints handling and digital services for residents of the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -353,6 +370,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburgmarket.co.za",
+            "mandate": "To operate the largest fresh produce market in Africa at City Deep, trading fruit and vegetables for the region.",
             "description": "The Joburg Market at City Deep is the largest fresh produce market in Africa, trading fruit and vegetables for the region.",
             "source_reference": "https://www.joburgmarket.co.za",
             "source_links": [
@@ -375,6 +393,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://visit.joburg",
+            "mandate": "To market Johannesburg as a destination, provide visitor information and support events as the City's destination marketing organisation.",
             "description": "The Joburg Tourism Company is the City of Johannesburg destination management organisation for destination marketing, visitor information and events.",
             "source_reference": "https://visit.joburg",
             "source_links": [
@@ -395,6 +414,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.johannesburgwater.co.za",
+            "mandate": "To supply potable water and manage sanitation and wastewater services across the City of Johannesburg.",
             "description": "Johannesburg Water supplies potable water and manages sanitation and wastewater services across the city.",
             "source_reference": "https://www.johannesburgwater.co.za",
             "source_links": [
@@ -415,6 +435,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joshco.co.za",
+            "mandate": "To develop and manage social and affordable rental housing in the City of Johannesburg.",
             "description": "The Johannesburg Social Housing Company develops and manages social and affordable rental housing in the city.",
             "source_reference": "https://www.joshco.co.za",
             "source_links": [
@@ -435,6 +456,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.jhbproperty.co.za",
+            "mandate": "To manage the city property estate, including municipal property development, leasing and facilities.",
             "description": "The Joburg Property Company manages the city property estate, including municipal property development, leasing and facilities management.",
             "source_reference": "https://www.jhbproperty.co.za",
             "source_links": [
@@ -455,6 +477,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.jra.org.za",
+            "mandate": "To plan, construct and maintain the city road network, stormwater infrastructure and road signage.",
             "description": "The Johannesburg Roads Agency plans, constructs and maintains the city road network, stormwater infrastructure and road signage.",
             "source_reference": "https://www.jra.org.za",
             "source_links": [
@@ -475,6 +498,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://mbus.joburg.org.za",
+            "mandate": "To operate scheduled public bus transport across the City of Johannesburg metro.",
             "description": "Metrobus is the City of Johannesburg municipal bus operator, providing scheduled public bus transport across the metro.",
             "source_reference": "https://mbus.joburg.org.za",
             "source_links": [
@@ -488,23 +512,26 @@
         },
         {
             "id": "mtc",
-            "name": "Metropolitan Trading Company",
+            "name": "Metropolitan Tech Company",
             "organisation_type": "entity",
             "abbreviation": "MTC",
-            "aliases": [],
+            "aliases": [
+                "Metropolitan Trading Company"
+            ],
             "head": null,
             "jurisdiction": "City of Johannesburg",
-            "official_url": "https://mtc.joburg.org.za",
-            "description": "The Metropolitan Trading Company is the City of Johannesburg broadband and technology company, supplying wholesale data, dark fibre, lit fibre and connectivity services.",
-            "source_reference": "https://mtc.joburg.org.za",
+            "official_url": "https://metrotech.co.za",
+            "mandate": "To provide broadband and connectivity as the City of Johannesburg's technology company, supplying wholesale data, dark fibre, lit fibre and connectivity services.",
+            "description": "The Metropolitan Tech Company is the City of Johannesburg broadband and technology company, supplying wholesale data, dark fibre, lit fibre and connectivity services.",
+            "source_reference": "https://metrotech.co.za",
             "source_links": [
-                "https://mtc.joburg.org.za"
+                "https://metrotech.co.za"
             ],
             "tier": "tier1",
             "official_status": "active",
             "verification_status": "verified",
-            "last_verified_at": "2026-09-22T00:00:00+00:00",
-            "last_updated": "2026-09-22T00:00:00+00:00"
+            "last_verified_at": "2026-09-28T00:00:00+00:00",
+            "last_updated": "2026-09-28T00:00:00+00:00"
         },
         {
             "id": "office-of-city-manager",
@@ -515,6 +542,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To coordinate the administration of the City of Johannesburg, supporting the mayor, council and municipal departments.",
             "description": "The Office of the City Manager coordinates the administration of the City of Johannesburg, supporting the mayor, council and municipal departments.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -535,6 +563,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.pikitup.co.za",
+            "mandate": "To collect, recycle and dispose of the City of Johannesburg's waste as its municipal waste management utility.",
             "description": "Pikitup is the City of Johannesburg waste management utility, responsible for waste collection, recycling and disposal services.",
             "source_reference": "https://www.pikitup.co.za",
             "source_links": [
@@ -555,6 +584,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To provide public safety services including law enforcement, by-law enforcement and emergency management in the City of Johannesburg.",
             "description": "Public safety services including law enforcement, by-law enforcement and emergency management in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -575,6 +605,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To run social development, welfare and community empowerment programmes in the City of Johannesburg.",
             "description": "Social development, welfare and community empowerment programmes in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -595,6 +626,7 @@
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To plan transport, public transport and mobility programmes for the City of Johannesburg.",
             "description": "Transport planning, public transport and mobility programmes for the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [
@@ -608,13 +640,14 @@
         },
         {
             "id": "water-management-biodiversity",
-            "name": "Water and Sanitation",
+            "name": "Water and Biodiversity",
             "organisation_type": "directorate",
             "abbreviation": null,
             "aliases": [],
             "head": null,
             "jurisdiction": "City of Johannesburg",
             "official_url": "https://www.joburg.org.za",
+            "mandate": "To manage water resources, biodiversity and natural environment conservation in the City of Johannesburg.",
             "description": "Water resource management, biodiversity and natural environment conservation in the City of Johannesburg.",
             "source_reference": "https://www.joburg.org.za",
             "source_links": [

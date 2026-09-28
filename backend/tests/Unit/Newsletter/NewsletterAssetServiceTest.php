@@ -27,7 +27,7 @@ class NewsletterAssetServiceTest extends TestCase
     public function test_organisation_without_a_logo_file_gets_a_deterministic_monogram(): void
     {
         $service = $this->service();
-        $organisation = $this->organisation('pikitup', 'Pikitup', 'PKT', OrganisationType::Entity);
+        $organisation = $this->organisation('missing-logo-org', 'Pikitup', 'PKT', OrganisationType::Entity);
 
         $asset = $service->organisationLogo($organisation);
 

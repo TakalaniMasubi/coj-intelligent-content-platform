@@ -88,6 +88,8 @@
                 <nav class="nav" aria-label="Primary">
                     <a href="{{ route('dashboard') }}">Dashboard</a>
                     <a href="{{ route('intelligence.search') }}">Intelligence Search</a>
+                    <a href="{{ route('selection.history') }}">Selection History</a>
+                    <a href="{{ route('newsletter.studio') }}">Newsletter</a>
                 </nav>
             </div>
         </header>

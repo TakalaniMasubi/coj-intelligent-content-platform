@@ -38,7 +38,7 @@ class CuratedDatasetTest extends TestCase
     {
         $this->assertCount(31, $this->organisations->all());
         $this->assertCount(14, $this->sources->all());
-        $this->assertCount(16, $this->articles->all());
+        $this->assertCount(17, $this->articles->all());
     }
 
     public function test_organisation_dataset_is_complete_and_well_typed(): void
@@ -126,7 +126,7 @@ class CuratedDatasetTest extends TestCase
             $hashes[] = $article->contentHash;
         }
 
-        $this->assertCount(16, array_unique($hashes));
+        $this->assertCount(17, array_unique($hashes));
     }
 
     public function test_verified_sources_carry_verification_evidence(): void

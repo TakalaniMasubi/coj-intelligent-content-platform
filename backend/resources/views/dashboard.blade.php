@@ -125,6 +125,33 @@
             .section-link { font-size: 13px; font-weight: 700; color: #1a56db; text-decoration: none; }
             .section-link:hover { text-decoration: underline; }
 
+            /* ---------- Newsletter call-to-action ---------- */
+            .newsletter-cta {
+                background:
+                    linear-gradient(120deg, #0e1115 0%, #18222c 55%, #24303c 100%);
+                border-radius: 14px; padding: 20px 22px; margin-bottom: 22px;
+                display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+                box-shadow: 0 8px 30px rgba(16, 20, 24, 0.16);
+                border: 1px solid #2c3946;
+            }
+            .newsletter-cta .mark {
+                flex: 0 0 auto; width: 52px; height: 52px; border-radius: 12px;
+                background: var(--gold); color: #0e1115;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 22px; font-weight: 800; letter-spacing: 0.02em;
+                box-shadow: 0 4px 14px rgba(245, 184, 0, 0.35);
+            }
+            .newsletter-cta .txt { flex: 1 1 320px; min-width: 240px; color: #eef1f4; }
+            .newsletter-cta .txt-title { font-size: 16px; font-weight: 800; margin: 0 0 4px; }
+            .newsletter-cta .txt-sub { font-size: 13px; color: #b7c0ca; margin: 0; }
+            .newsletter-cta .go { flex: 0 0 auto; }
+            .newsletter-cta .go a {
+                display: inline-flex; align-items: center; gap: 8px;
+                background: var(--gold); color: #0e1115; font-weight: 800; font-size: 14px;
+                padding: 11px 18px; border-radius: 10px; text-decoration: none;
+            }
+            .newsletter-cta .go a:hover { background: #ffd22e; }
+
             .metric-grid {
                 display: grid; gap: 14px;
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -269,6 +296,7 @@
                     <a href="{{ route('intelligence.search') }}">Intelligence Search</a>
                     <a href="#repository-health">Repository</a>
                     <a href="{{ route('selection.history') }}">Selection History</a>
+                    <a href="{{ route('newsletter.studio') }}">Newsletter</a>
                 </nav>
             </div>
         </header>
@@ -299,6 +327,15 @@
                     <button class="chip" type="button">Public safety</button>
                 </div>
             </section>
+
+            <div class="newsletter-cta" role="group" aria-label="Newsletter studio">
+                <div class="mark" aria-hidden="true">NL</div>
+                <div class="txt">
+                    <p class="txt-title">Newsletter Studio</p>
+                    <p class="txt-sub">Compose a professional 3-page municipal newsletter from the curated repository — real organisations, real articles, no AI and no invented content.</p>
+                </div>
+                <div class="go"><a href="{{ route('newsletter.studio') }}">Open Newsletter Studio →</a></div>
+            </div>
 
             <section class="section" aria-labelledby="metrics-title">
                 <div class="section-head">

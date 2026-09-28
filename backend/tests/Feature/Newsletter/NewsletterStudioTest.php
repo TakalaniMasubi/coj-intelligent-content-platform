@@ -68,8 +68,8 @@ class NewsletterStudioTest extends TestCase
             ->assertOk()
             ->assertSee('Your selected organisations')
             ->assertSee('Pikitup')
+            ->assertSee('Environment and Infrastructure Services')
             ->assertSee('Joburg Property Company')
-            ->assertSee('Joburg Tourism Company')
             ->assertSee('Executive Brief')
             ->assertSee('News & Insights')
             ->assertSee('Municipal Spotlight')
@@ -232,7 +232,7 @@ class NewsletterStudioTest extends TestCase
         $this->assertSame('success', $record['pdf_status']);
         $this->assertSame(3, $record['page_count']);
         $this->assertNotEmpty($record['organisations']);
-        $this->assertSame(['pikitup', 'jpc', 'joburg-tourism'], array_column(
+        $this->assertSame(['pikitup', 'environment-infrastructure', 'jpc'], array_column(
             $record['organisations'],
             'id',
         ));

@@ -213,6 +213,7 @@
                     <a href="{{ route('dashboard') }}">Dashboard</a>
                     <a href="{{ route('intelligence.search') }}" class="active"><span class="dot" aria-hidden="true"></span>Intelligence Search</a>
                     <a href="{{ route('selection.history') }}">Selection History</a>
+                    <a href="{{ route('newsletter.studio') }}">Newsletter</a>
                 </nav>
             </div>
         </header>
