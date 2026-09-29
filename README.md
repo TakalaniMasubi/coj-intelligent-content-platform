@@ -48,7 +48,7 @@ coj-intelligent-content-platform/
 │   └── storage/app/data/   JSON repository volume (gitignored runtime data)
 ├── docs/
 │   ├── architecture/    architecture documentation
-│   ├── requirements/    requirements baseline (planned)
+│   ├── requirements/    requirements baseline (Phases 1-7)
 │   ├── api/             API documentation
 │   └── user-guide/      user documentation (planned)
 └── README.md

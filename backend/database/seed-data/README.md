@@ -8,7 +8,7 @@ repository (Phase 3).
   17 directorates and the Office of the City Manager
 - `sources.json` — `SourceTrust` classifications for the 14 official
   source domains referenced by the dataset
-- `articles.json` — 16 foundation `Article` rows mapping entities and
+- `articles.json` — 17 foundation `Article` rows mapping entities and
   directorates to their official sources
 
 ## Provenance policy
@@ -23,7 +23,8 @@ No facts are invented. Every record carries a `source_reference` and a
   Johannesburg Roads Agency and the municipal directorates)
 - **unverified** — no confirming source yet
 
-Directorates are individually unverified; their entries rely on the City
+Directorates are individually pending unless verified (Environment and
+Infrastructure Services is verified); their entries rely on the City
 of Johannesburg official portal (`https://www.joburg.org.za`) as the
 source reference. Official URLs point at verified domain roots; no deep
 paths are fabricated. Article `content_hash` values are real sha256
